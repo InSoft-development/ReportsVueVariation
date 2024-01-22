@@ -799,11 +799,19 @@ def get_tab_pdf_report(method, group, interval):
 
 @eel.expose
 def get_config_rolling():
+    """
+    Геттер возвращает сглаживание в часах из конфига
+    :return: целое число - сглаживание в часах
+    """
     return int(config["model"]["rolling"])
 
 
 @eel.expose
 def get_length_slice():
+    """
+    Геттер возвращает количество строк срезов
+    :return: целое число - количество строк срезов
+    """
     return len(df_slices)
 
 
@@ -817,6 +825,19 @@ def rebuild_anomaly_interval(method,
                              COUNT_CONTINUE_SHORT,
                              COUNT_CONTINUE_LONG,
                              COUNT_TOP=3):
+    """
+    Функция возвращает статус операции выделения новых интервалов
+    :param method: наименование метода
+    :param roll_probability: сглаживание в часах
+    :param SHORT_THRESHOLD: порог для определения аномального значения для поиска коротких интервалов
+    :param LONG_THRESHOLD: порог для определения аномального значения для поиска длинных интервалов
+    :param LEN_SHORT_ANOMALY: настройка определяет минимальную длину короткого обнаруженного интервала аномалии
+    :param LEN_LONG_ANOMALY: настройка определяет минимальную длину длинного обнаруженного интервала аномалии
+    :param COUNT_CONTINUE_SHORT: количество отсчетов для прерывания короткого интервала
+    :param COUNT_CONTINUE_LONG: количество отсчетов для прерывания длинного интервала
+    :param COUNT_TOP: целое число указывает сколько датчиков, внесших max вклад, требуется вернуть
+    :return: строка статуса выделения новых интервалов
+    """
 
     logger.info(f"rebuild_anomaly_interval({method}, {roll_probability}, "
                 f"{SHORT_THRESHOLD}, "

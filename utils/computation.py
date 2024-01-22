@@ -14,6 +14,13 @@ def mean_index(data, sensors, top_count=3):
 
 
 def rolling_probability(df, roll_in_hours, number_of_samples):
+    """
+    Функция возвращает сглаженный скользящим средним фрейм pandas с целевой переменной target_value
+    :param df: фрейм исходных данных
+    :param roll_in_hours: сглаживание в часах
+    :param number_of_samples: количество интервалов кратных 5
+    :return: фрейм pandas со сглаженной скользящим средним целевой переменной target_value
+    """
     # Первые индексы после сглаживания будут Nan, запоминаем их
     temp_rows = df['target_value'].iloc[:roll_in_hours*number_of_samples]
     rolling_prob = df['target_value'].rolling(window=roll_in_hours*number_of_samples, min_periods=1, axis='rows').mean()
@@ -24,6 +31,18 @@ def rolling_probability(df, roll_in_hours, number_of_samples):
 
 def get_anomaly_interval(loss, threshold_short, threshold_long, len_long, len_short, count_continue_short=10,
                          count_continue_long=15):
+    """
+    Функция выделения интервалов
+    :param loss: pandas фрейм с целевой переменной target_value
+    :param threshold_short: порог для определения аномального значения для поиска коротких интервалов
+    :param threshold_long: порог для определения аномального значения для поиска длинных интервалов
+    :param len_long: настройка определяет минимальную длину длинного обнаруженного интервала аномалии
+    :param len_short: настройка определяет минимальную длину короткого обнаруженного интервала аномалии
+    :param count_continue_short: количество отсчетов для прерывания короткого интервала
+    :param count_continue_long: количество отсчетов для прерывания длинного интервала
+    :return: long_interval_list + short_interval_list: массив значений выделенных интервалов
+             long_idx_list + short_idx_list: массив индексов выделенных интервалов
+    """
     long_interval_list = []
     short_interval_list = []
     loss_interval = []
