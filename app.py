@@ -848,6 +848,7 @@ def rebuild_anomaly_interval(method,
                 f"{COUNT_CONTINUE_LONG}, "
                 f"{COUNT_TOP})")
     eel.setProgressBarRebuildIntervalValue(0)
+    reports.clean_old_reports(method)
 
     csv_predict_listdir = sorted(os.listdir(f'{constants.DATA_DIRECTORY}{method}{os.sep}csv_predict{os.sep}'))
     csv_loss_listdir = sorted(os.listdir(f'{constants.DATA_DIRECTORY}{method}{os.sep}csv_loss{os.sep}'))

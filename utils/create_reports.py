@@ -2,6 +2,7 @@ import eel
 
 import os
 import errno
+import shutil
 import time
 
 from loguru import logger
@@ -401,3 +402,19 @@ def create_tab_report(method, group, interval, orientation,
 
     logger.info("New period report has been created")
     return f"Новый отчет по периоду {interval[0]}-{interval[-1]} создан"
+
+
+def clean_old_reports(method):
+
+    for group in sorted(os.listdir(f"{constants.REPORTS_DIRECTORY}{method}{os.sep}")):
+        logger.info(group)
+        web_app_reports_group = f'{constants.REPORTS_DIRECTORY}{method}{os.sep}{group}{os.sep}'
+        logger.info(f"delete {web_app_reports_group}")
+        shutil.rmtree(web_app_reports_group)
+
+        try:
+            logger.info(f"create {web_app_reports_group}")
+            os.mkdir(f'{web_app_reports_group}')
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                logger.error(e)
