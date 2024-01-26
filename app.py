@@ -18,6 +18,7 @@ from utils.correct_start import check_correct_application_structure, get_jsons, 
 from utils.computation import mean_index, rolling_probability, get_anomaly_interval
 import utils.constants_and_paths as constants
 import utils.create_reports as reports
+import utils.parser as pt
 
 VERSION = '1.0.0'
 
@@ -144,14 +145,15 @@ def get_predict_values(method, group, interval=None, left_space=None, right_spac
     # Обрабатываем если получены отступы из веб-приложения
     if (left_space is not None) and (right_space is not None):
         interval_len = interval[1] - interval[0]
-        if interval_len > left_space:
+        if (interval_len > left_space) and (interval[0] > left_space) and (interval[0] > interval_len):
             left_indentation = interval_len
         else:
             if interval[0] > left_space:
                 left_indentation = left_space
             else:
                 left_indentation = 0
-        if interval_len > right_space:
+        if (interval_len > right_space) and (interval[-1] < (len(TIMESTAMP) - right_space))\
+                and ((interval[-1] + interval_len) < len(TIMESTAMP)):
             right_indentation = interval_len
         else:
             if interval[-1] < (len(TIMESTAMP) - right_space):
@@ -565,14 +567,15 @@ def get_length_time_and_indentation(interval=None, left_space=None, right_space=
     # Обрабатываем если получены отступы из веб-приложения
     if (left_space is not None) and (right_space is not None):
         interval_len = interval[1] - interval[0]
-        if interval_len > left_space:
+        if (interval_len > left_space) and (interval[0] > left_space) and (interval[0] > interval_len):
             left_indentation = interval_len
         else:
             if interval[0] > left_space:
                 left_indentation = left_space
             else:
                 left_indentation = 0
-        if interval_len > right_space:
+        if (interval_len > right_space) and (interval[-1] < (len(TIMESTAMP) - right_space))\
+                and ((interval[-1] + interval_len) < len(TIMESTAMP)):
             right_indentation = interval_len
         else:
             if interval[-1] < (len(TIMESTAMP) - right_space):
@@ -920,6 +923,23 @@ def rebuild_anomaly_interval(method,
         eel.setProgressBarRebuildIntervalValue(int((group+1)/len(csv_predict_listdir) * 100))
 
     msg = f"Выделение интервалов для метода {method} закончено"
+    return msg
+
+
+@eel.expose
+def template_report_create(text):
+    """
+    Функция возвращает статус операции построения отчета по шаблону
+    :param text: текст отчета с метатегами
+    :return: строка статуса операции построения отчета по шаблону
+    """
+    logger.info(f"template_report_create(text)")
+    signals, lines, tables = pt.parse_text(text)
+    if signals:
+        signals_data = pt.parse_signals(signals, DICT_KKS)
+        text = pt.signal_replace(text, signals_data)
+    logger.info(text)
+    msg = f"Создание отчета по шаблону завершено"
     return msg
 
 

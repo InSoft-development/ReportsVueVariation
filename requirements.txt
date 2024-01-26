@@ -1,7 +1,8 @@
-pandas~=1.4.4
-loguru~=0.5.3
-Eel~=0.16.0
-reportlab~=3.5.68
-plotly~=5.18.0
-numpy~=1.23.5
-scipy~=1.9.0
+pandas>=1.4.4
+loguru>=0.5.3
+Eel>=0.16.0
+reportlab>=3.5.68
+plotly>=5.18.0
+numpy>=1.23.5
+scipy>=1.9.0
+kaleido>=0.2.1

@@ -27,18 +27,18 @@ headline_style.textColor = "#4562a1"
 subheadline_style = styles["Heading2"]
 subheadline_style.textColor = "#4562a1"
 
-pdfmetrics.registerFont(TTFont('TNR', 'times.ttf', 'UTF-8'))  # шрифт
+pdfmetrics.registerFont(TTFont('DVS', 'DejaVuSerif.ttf', 'UTF-8'))  # шрифт
 
 
 # форматирование текста отчета Times New Roman
 def string_guy(text):
-    return f'<font name="TNR">{text}</font>'
+    return f'<font name="DVS">{text}</font>'
 
 
 # форматирование текста легенды
 def string_guy_legend(text, color):
-    return f'<font name="TNR">{text[:text.index(":")]}' \
-           f'</font><font name="TNR" color={color}>{text[text.index(":"):]}</font>'
+    return f'<font name="DVS">{text[:text.index(":")]}' \
+           f'</font><font name="DVS" color={color}>{text[text.index(":"):]}</font>'
 
 
 # форматирование обычного абзаца

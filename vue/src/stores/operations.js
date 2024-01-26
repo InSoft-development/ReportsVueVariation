@@ -85,6 +85,18 @@ export async function createReport(method, group, progressBarValue, progressBarA
   }
 }
 
+/**
+ * Процедура запускает построение pdf отчета по открытой вкладке периода
+ * @param method наименование выбранного метода
+ * @param group номер выбранной группы
+ * @param interval массив интервала в формате: [{начало_интервала}, {конец_интервала}].
+ * @param selectedTopSensors ссылка на ref объект выбранных датчиков, внесших максимальный вклад
+ * @param selectedOtherGroupSensors ссылка на ref объект выбранных остальных датчиков группы
+ * @param progressTabBarValue ссылка на ref объект значения прогресс бара создания отчета по открытой вкладке периода
+ * @param progressTabBarActive ссылка на ref объект показа прогресс бара создания отчета по открытой вкладке периода
+ * @returns {Promise<void>} зарезолвенный промис с выводом контексного сообщения в зависимости от завершения операции
+ * создания отчета по открытой вкладке периода
+ */
 export async function createTabReport(
   method,
   group,
@@ -132,6 +144,19 @@ export async function createTabReport(
   }
 }
 
+/**
+ * Процедура запускает выделение новых аномальных интервалов для метода
+ * @param method наименование выбранного метода
+ * @param rollingInput сглаживание в часах
+ * @param shortThreshold порог для определения аномального значения для поиска коротких интервалов
+ * @param longThreshold порог для определения аномального значения для поиска длинных интервалов
+ * @param lenShortAnomaly настройка определяет минимальную длину короткого обнаруженного интервала аномалии
+ * @param lenLongAnomaly настройка определяет минимальную длину длинного обнаруженного интервала аномалии
+ * @param countContinueShort количество отсчетов для прерывания короткого интервала
+ * @param countContinueLong количество отсчетов для прерывания длинного интервала
+ * @returns {Promise<void>} зарезолвенный промис с выводом контексного сообщения в зависимости от завершения операции
+ * выделения новых аномальных интервалов для метода
+ */
 export async function rebuildIntervals(
   method,
   rollingInput,
@@ -152,5 +177,10 @@ export async function rebuildIntervals(
     countContinueShort,
     countContinueLong
   )()
+  alert(result)
+}
+
+export async function templateReportCreate(content) {
+  let result = await eel.template_report_create(content)()
   alert(result)
 }

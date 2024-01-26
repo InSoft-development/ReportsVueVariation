@@ -44,14 +44,17 @@ def get_tab_fig(df_predict, TIMESTAMP, interval, group_intervals, left_space, ri
 
     # Обрабатываем отступы из веб-приложения
     interval_len = interval_index[1] - interval_index[0]
-    if interval_len > left_space:
+    logger.info(interval_index)
+    logger.info(interval_len)
+    if (interval_len > left_space) and (interval_index[0] > left_space) and (interval_index[0] > interval_len):
         left_indentation = interval_len
     else:
         if interval_index[0] > left_space:
             left_indentation = left_space
         else:
             left_indentation = 0
-    if interval_len > right_space:
+    if (interval_len > right_space) and (interval_index[-1] < (len(TIMESTAMP) - right_space)) \
+            and ((interval_index[-1] + interval_len) < len(TIMESTAMP)):
         right_indentation = interval_len
     else:
         if interval_index[-1] < (len(TIMESTAMP) - right_space):
@@ -62,6 +65,10 @@ def get_tab_fig(df_predict, TIMESTAMP, interval, group_intervals, left_space, ri
     # Учитываем выставленные отступы слева и справа для центрирования графика
     interval_index[0] -= left_indentation
     interval_index[-1] += right_indentation
+
+    logger.info(left_indentation)
+    logger.info(right_indentation)
+    logger.info(interval_index)
 
     fig = px.line(
         df_predict.iloc[interval_index[0]:interval_index[-1]],
@@ -101,14 +108,15 @@ def get_sensors_fig(df_slices, TIMESTAMP,
 
     # Обрабатываем отступы из веб-приложения
     interval_len = interval_index[1] - interval_index[0]
-    if interval_len > left_space:
+    if (interval_len > left_space) and (interval_index[0] > left_space) and (interval_index[0] > interval_len):
         left_indentation = interval_len
     else:
         if interval_index[0] > left_space:
             left_indentation = left_space
         else:
             left_indentation = 0
-    if interval_len > right_space:
+    if (interval_len > right_space) and (interval_index[-1] < (len(TIMESTAMP) - right_space)) \
+            and ((interval_index[-1] + interval_len) < len(TIMESTAMP)):
         right_indentation = interval_len
     else:
         if interval_index[-1] < (len(TIMESTAMP) - right_space):
@@ -232,14 +240,15 @@ def get_sensors_tab_fig(df_slices, TIMESTAMP,
 
     # Обрабатываем отступы из веб-приложения
     interval_len = interval_index[1] - interval_index[0]
-    if interval_len > left_space:
+    if (interval_len > left_space) and (interval_index[0] > left_space) and (interval_index[0] > interval_len):
         left_indentation = interval_len
     else:
         if interval_index[0] > left_space:
             left_indentation = left_space
         else:
             left_indentation = 0
-    if interval_len > right_space:
+    if (interval_len > right_space) and (interval_index[-1] < (len(TIMESTAMP) - right_space))\
+            and ((interval_index[-1] + interval_len) < len(TIMESTAMP)):
         right_indentation = interval_len
     else:
         if interval_index[-1] < (len(TIMESTAMP) - right_space):

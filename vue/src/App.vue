@@ -11,17 +11,32 @@ import {
   getPlotFeatures,
   createReport,
   getRollingInput,
-  rebuildIntervals
+  rebuildIntervals,
+  templateReportCreate
 } from './stores'
 
+import { MdEditor, config } from 'md-editor-v3'
+
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+
+import 'md-editor-v3/lib/style.css'
+
+import ru from '@vavt/cm-extension/dist/locale/ru'
+
+config({
+  editorConfig: {
+    languageUserDefined: {
+      ru: ru
+    }
+  }
+})
 
 import { useApplicationStore } from './stores/applicationStore'
 
 // заглушка выбора метода
 
 export default {
-  components: { SidebarMenu },
+  components: { SidebarMenu, MdEditor },
   setup() {
     const applicationStore = useApplicationStore()
     const router = useRouter()
@@ -74,6 +89,13 @@ export default {
     const progressBarRebuildIntervalValue = ref('0')
     // флаг показа прогресс бара при перевыделении интервалов
     let progressBarRebuildIntervalActive = ref(false)
+
+    // флаг показа выпадающего окна редактирования отчетов
+    const dialogEditorActive = ref(false)
+
+    // содержимое редактора ввода markdown
+    const editorContent = ref('# Hello Editor')
+    const editorRef = ref()
 
     onMounted(async () => {
       // Заполняем объекты sidebarMenu, tabMenu получаем количество и наименования групп
@@ -196,6 +218,26 @@ export default {
     }
     window.eel.expose(setProgressBarRebuildIntervalValue, 'setProgressBarRebuildIntervalValue')
 
+    // обработчик открытия диалога редактирования отчетов
+    function onButtonDialogEditorClick() {
+      dialogEditorActive.value = true
+    }
+
+    // обработчик изменения текста редактора
+    const onEditorChange = (val) => {
+      console.log(val)
+    }
+
+    // обработчик получения html редактора
+    const onEditorHtmlChanged = (val) => {
+      console.log(val)
+    }
+
+    // обработчки создания отчета по шаблону
+    function onEditorReportCreateClick() {
+      templateReportCreate(editorContent.value)
+    }
+
     return {
       theme,
       sidebarMenu,
@@ -233,7 +275,14 @@ export default {
       flagHomePageUpdate,
       progressBarRebuildIntervalValue,
       progressBarRebuildIntervalActive,
-      setProgressBarRebuildIntervalValue
+      setProgressBarRebuildIntervalValue,
+      dialogEditorActive,
+      onButtonDialogEditorClick,
+      editorContent,
+      editorRef,
+      onEditorChange,
+      onEditorHtmlChanged,
+      onEditorReportCreateClick
     }
   }
 }
@@ -461,6 +510,33 @@ export default {
                 :value="progressBarRebuildIntervalValue"
                 v-if="progressBarRebuildIntervalActive"
               ></ProgressBar>
+            </template>
+          </Dialog>
+        </div>
+        <div>
+          <Button @click="onButtonDialogEditorClick">Редактор отчетов</Button>
+          <Dialog
+            v-model="dialogEditorActive"
+            :visible="dialogEditorActive"
+            :closable="false"
+            header="Редактор отчетов"
+            position="left"
+            :modal="true"
+            :draggable="false"
+            :style="{ width: '50rem' }"
+          >
+            <div class="container">
+              <MdEditor
+                language="ru"
+                v-model="editorContent"
+                @change="onEditorChange"
+                ref="editorRef"
+                @onHtmlChanged="onEditorHtmlChanged"
+              ></MdEditor>
+            </div>
+            <template #footer>
+              <Button label="Отмена" icon="pi pi-times" @click="dialogEditorActive = false" text />
+              <Button label="Создать отчет" icon="pi pi-check" @click="onEditorReportCreateClick" />
             </template>
           </Dialog>
         </div>

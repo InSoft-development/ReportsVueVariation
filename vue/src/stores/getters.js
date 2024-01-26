@@ -330,8 +330,8 @@ export async function getAddedToTableIntervals(method, group, addedToTableInterv
  * @param method наименование выбранного метода
  * @param group номер выбранной группы
  * @param topSensors ссылка на ref объект чекбоксов топовых датчиков
- * @param otherGroupSensors
- * @param selectedTopSensors
+ * @param otherGroupSensors ссылка на ref объект выбранных остальных датчиков группы
+ * @param selectedTopSensors ссылка на ref объект выбранных датчиков, внесших максимальный вклад
  * @param intervalId номер интервала в полностью отсортированных интервалах
  * (интервалы найденные методом + интервалы добавленные пользователем)
  * @returns {Promise<void>} зарезолвенный промис ref объектов

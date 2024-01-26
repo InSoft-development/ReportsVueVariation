@@ -24,7 +24,8 @@ import {
   updateInterval,
   createReport,
   createTabReport,
-  rebuildIntervals
+  rebuildIntervals,
+  templateReportCreate
 } from './operations'
 
 export {
@@ -50,5 +51,6 @@ export {
   createReport,
   createTabReport,
   getRollingInput,
-  rebuildIntervals
+  rebuildIntervals,
+  templateReportCreate
 }

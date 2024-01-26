@@ -25,7 +25,37 @@ except OSError as e:
         logger.error(e)
 
 try:
+    os.mkdir(f'{constants.REPORTS_CUSTOM}')
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        logger.error(e)
+
+try:
+    os.mkdir(f'{constants.WEB_INTERVAL_DIR}')
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        logger.error(e)
+
+try:
     os.mkdir(f'{constants.DATA_CSV_DIRECTORY}')
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        logger.error(e)
+
+try:
+    os.mkdir(f'{constants.JINJA}')
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        logger.error(e)
+
+try:
+    os.mkdir(f'{constants.JINJA_TEMPLATE}')
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        logger.error(e)
+
+try:
+    os.mkdir(f'{constants.JINJA_PYLIB}')
 except OSError as e:
     if e.errno != errno.EEXIST:
         logger.error(e)
