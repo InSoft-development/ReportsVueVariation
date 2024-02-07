@@ -1,0 +1,24 @@
+{% set count = 20 %}
+{% if table_kks['kks'] == "Сигнал не найден" %}
+    <div style="width:100%;max-width:700px">'kks': {{ table_kks['kks'] }}</div>
+{% else %}
+    <div align="center" style="width:100%;max-width:700px">Таблица сигнала: 'kks' (первые {{ count }} значения)</div>
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">№ записи</th>
+          <th scope="col">Метка времени</th>
+          <th scope="col">Значение сигнала</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in rows['kks'][:count] %}
+        <tr>
+          <th scope="row">{{ item["id"] }}</th>
+          <td>{{ item["timestamp"] }}</td>
+          <td>{{ item["value"] }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+{% endif %}

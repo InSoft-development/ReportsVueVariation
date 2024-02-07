@@ -13,12 +13,16 @@ from scipy.stats import rv_histogram
 import json
 from loguru import logger
 import datetime
+from dateutil import parser as pars
 
 from utils.correct_start import check_correct_application_structure, get_jsons, get_name_of_kks
 from utils.computation import mean_index, rolling_probability, get_anomaly_interval
 import utils.constants_and_paths as constants
 import utils.create_reports as reports
 import utils.parser as pt
+import jinja.pylib.getters_signal as gs
+import jinja.pylib.getters_line as gl
+import jinja.pylib.get_template as gt
 
 VERSION = '1.0.0'
 
@@ -271,15 +275,26 @@ def add_new_interval(method, group, date_string_begin_from_js, date_string_end_f
         logger.info(msg)
         return msg
 
+    msg = ""
     if date_begin not in TIMESTAMP:
-        msg = f"Временная отметка {date_begin} не найдена в файле срезов"
+        msg += f"Временная отметка начала периода {date_begin} не найдена в файле срезов.\n"
+        timestamp_begin = pars.parse(date_begin).timestamp()
+        date_begin = pars.parse(min(TIMESTAMP, key=lambda x: abs(pars.parse(x).timestamp() - timestamp_begin)))
+        date_begin = datetime.datetime.strftime(date_begin, "%Y-%m-%d %H:%M:%S")
+
+        msg += f"Временная отметка была округлена до {date_begin}.\n"
         logger.info(msg)
-        return msg
+        # return msg
 
     if date_end not in TIMESTAMP:
-        msg = f"Временная отметка {date_end} не найдена в файле срезов"
+        msg += f"Временная отметка конца периода {date_end} не найдена в файле срезов.\n"
+        timestamp_end = pars.parse(date_end).timestamp()
+        date_end = pars.parse(min(TIMESTAMP, key=lambda x: abs(pars.parse(x).timestamp() - timestamp_end)))
+        date_end = datetime.datetime.strftime(date_end, "%Y-%m-%d %H:%M:%S")
+
+        msg += f"Временная отметка была округлена до {date_end}.\n"
         logger.info(msg)
-        return msg
+        # return msg
 
     # Считываем добавленные пользователем интервалы для проверки вхождения
     added_intervals_json_path = f'{constants.DATA_DIRECTORY}{method}{os.sep}' \
@@ -310,7 +325,7 @@ def add_new_interval(method, group, date_string_begin_from_js, date_string_end_f
         group_sensors = union_sensors + single_sensors
 
     # Считаем датчики, внесшие наибольший вклад на интервале
-    top = mean_index(df_loss.iloc[TIMESTAMP.index(date_begin):TIMESTAMP.index(date_end) + 1], group_sensors)
+    top = mean_index(df_loss.iloc[TIMESTAMP.index(date_begin):TIMESTAMP.index(date_end) + 1], group_sensors, DROP_LIST)
 
     # Формируем объект JSON
     dictionary = {
@@ -322,22 +337,22 @@ def add_new_interval(method, group, date_string_begin_from_js, date_string_end_f
 
     if dictionary in added_intervals_json:
         logger.info(f'{dictionary} already has in added intervals')
-        msg = "Интервал уже был добавлен раньше пользователем"
+        msg += "Интервал уже был добавлен раньше пользователем"
         logger.info(msg)
         return msg
     elif dictionary in group_intervals_json:
         logger.info(f'{dictionary} already has in group intervals')
-        msg = "Интервал уже выделен методом"
+        msg += "Интервал уже выделен методом"
         logger.info(msg)
         return msg
     else:
         if (update is not None) and (id_interval is not None):
             logger.info(added_intervals_json)
             added_intervals_json[id_interval] = dictionary
-            msg = "Интервал успешно обновлен"
+            msg += "Интервал успешно обновлен"
         else:
             added_intervals_json.append(dictionary)
-            msg = "Интервал успешно добавлен"
+            msg += "Интервал успешно добавлен"
         # Сортируем интервалы по временной отметки начала аномального интервала в json файле
         # если начала совпадают, то сортируем по концу интервалов
         added_intervals_json = sorted(added_intervals_json, key=lambda x: (x['time'][0], x['time'][-1]),
@@ -901,6 +916,12 @@ def rebuild_anomaly_interval(method,
                                                            count_continue_short=COUNT_CONTINUE_SHORT,
                                                            count_continue_long=COUNT_CONTINUE_LONG)
 
+            # отбрасываем лишние датчики, перечисленные в config_plot_SOCHI
+            for sensor in DROP_LIST:
+                if sensor in df_loss.columns:
+                    df_loss.drop(columns=sensor, inplace=True)
+                    logger.info(f"drop bad sensor: {sensor} from {df_loss_path} dataframe")
+
             for j in idx_list:
                 top_list = df_loss[j[0]:j[1]].mean().sort_values(ascending=False).index[:COUNT_TOP].to_list()
                 report_dict = {
@@ -927,20 +948,61 @@ def rebuild_anomaly_interval(method,
 
 
 @eel.expose
-def template_report_create(text):
+def template_report_create(text, report_name, text_html=None):
     """
     Функция возвращает статус операции построения отчета по шаблону
     :param text: текст отчета с метатегами
+    :param text_html: html скомпилированного текста markdown в редакторе
     :return: строка статуса операции построения отчета по шаблону
     """
-    logger.info(f"template_report_create(text)")
+    logger.info(f"template_report_create(text, {report_name}, text_html)")
     signals, lines, tables = pt.parse_text(text)
-    if signals:
-        signals_data = pt.parse_signals(signals, DICT_KKS)
-        text = pt.signal_replace(text, signals_data)
-    logger.info(text)
-    msg = f"Создание отчета по шаблону завершено"
+
+    # if signals:
+    #     signals_jinja = gs.get_data_jinja_dict_signals(signals, DICT_ALL_KKS)
+    #     logger.info(signals_jinja)
+    #
+    # lines_jinja = {}
+    # if lines:
+    #     lines_jinja = gl.get_data_jinja_dict_kks(lines, DICT_ALL_KKS)
+    #     logger.info(lines_jinja)
+
+    if text_html is None:
+        msg = f"Создание отчета по шаблону завершено"
+    else:
+        try:
+            # if report_name is None:
+            #     report_name = "custom"
+            gt.fill_content_by_html(text_html, signals, lines, tables, df_slices, DICT_ALL_KKS, report_name)
+            logger.info(f"report has been created")
+            msg = 1
+        except Exception as e:
+            logger.error(f"creating report has been failed")
+            msg = 0
     return msg
+
+
+@eel.expose
+def get_html(report_name):
+    logger.info(f"get_html({report_name})")
+    html_path = f'{constants.REPORTS_CUSTOM}{report_name}.html'
+    html_dir_web_path = f'web{os.sep}report.html'
+    shutil.copy(html_path, html_dir_web_path)
+    return "success"
+
+
+@eel.expose
+def remove_download_html(report_name):
+    logger.info(f" remove_download_html({report_name})")
+    html_path = f'{constants.REPORTS_CUSTOM}{report_name}.html'
+
+    try:
+        os.remove(html_path)
+        logger.info(f"downloaded html has been removed from space")
+    except Exception as e:
+        logger.error(e)
+        return e
+    return "success"
 
 
 def on_close(page, sockets):
@@ -1012,6 +1074,9 @@ if __name__ == '__main__':
 
     # наименования датчиков
     DICT_KKS = get_name_of_kks(DROP_LIST)
+
+    # наименования всех датчиков без ограничений
+    DICT_ALL_KKS = get_name_of_kks([])
 
     # Pass any second argument to enable debugging
     start_eel(develop=len(sys.argv) == 2)

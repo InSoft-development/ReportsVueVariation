@@ -180,7 +180,32 @@ export async function rebuildIntervals(
   alert(result)
 }
 
-export async function templateReportCreate(content) {
-  let result = await eel.template_report_create(content)()
-  alert(result)
+export async function templateReportCreate(content, htmlContent = null, reportName) {
+  let result = ''
+  let status = ''
+
+  if (reportName === '') reportName = 'custom'
+
+  if (htmlContent !== null) {
+    result = await eel.template_report_create(content, reportName, htmlContent)()
+    if (result === 1) status = await eel.get_html(reportName)()
+    else alert('Ошибка. Проверьте в отчете ввод ключевых слов')
+  } else {
+    result = await eel.template_report_create(content, reportName, htmlContent)()
+    if (result === 1) status = await eel.get_html(reportName)()
+    else alert('Ошибка. Проверьте в отчете ввод ключевых слов или наименование сохраняемого файла')
+  }
+
+  if (status === 'success') {
+    const link = document.createElement('a')
+    const pathTemplate = reportName + '.html'
+    link.setAttribute('download', pathTemplate)
+    link.setAttribute('type', 'application/octet-stream')
+    link.setAttribute('href', 'report.html')
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+
+    let removeStatus = await eel.remove_download_html(reportName)()
+  }
 }

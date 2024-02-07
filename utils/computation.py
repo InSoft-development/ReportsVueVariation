@@ -1,7 +1,7 @@
 from loguru import logger
 
 
-def mean_index(data, sensors, top_count=3):
+def mean_index(data, sensors, drop_list, top_count=3):
     """
     Функция вычисляет средние значения для составления списка датчиков, внесших max вклад
     :param data: pandas срез данных по группе и интервалу
@@ -9,7 +9,14 @@ def mean_index(data, sensors, top_count=3):
     :param top_count: целое число указывает сколько датчиков, внесших max вклад, требуется вернуть
     :return: mean_loss: датчики, внесшие max вклад
     """
-    mean_loss = data[sensors].mean().sort_values(ascending=False).index[:top_count].to_list()
+    # отбрасываем лишние датчики, перечисленные в config_plot_SOCHI
+    data_temp = data.copy(deep=True)
+    for sensor in drop_list:
+        if sensor in data_temp.columns:
+            data_temp.drop(columns=sensor, inplace=True)
+            logger.info(f"drop bad sensor: {sensor} from loss dataframe")
+
+    mean_loss = data_temp[sensors].mean().sort_values(ascending=False).index[:top_count].to_list()
     return mean_loss
 
 

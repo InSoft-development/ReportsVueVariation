@@ -1,0 +1,26 @@
+{% if signals_kks['kks'] == "Сигнал не найден" %}
+    <div id="{{ signals_kks_id['kks_id'] }}" style="width:100%;max-width:700px">'kks': {{ signals_kks['kks'] }}</div>
+{% else %}
+    <div id="{{ signals_kks_id['kks_id'] }}"></div>
+    <script>
+    var plotlyConfig = {
+      scrollZoom: true,
+      displayModeBar: false
+    }
+
+
+    var xArray = {{ data['kks']['x'] }};
+    var yArray = {{ data['kks']['y'] }};
+
+    var data = [{
+      x:xArray,
+      y:yArray,
+      mode: 'lines',
+      type:"scatter"
+    }];
+
+    var layout = {title:"{{ signals_kks['kks'] }}"};
+
+    Plotly.newPlot("{{ signals_kks_id['kks_id'] }}", data, layout, plotlyConfig);
+    </script>
+{% endif %}

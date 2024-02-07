@@ -15,7 +15,7 @@ import {
   templateReportCreate
 } from './stores'
 
-import { MdEditor, config } from 'md-editor-v3'
+import { MdEditor, MdPreview, config } from 'md-editor-v3'
 
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
@@ -36,7 +36,7 @@ import { useApplicationStore } from './stores/applicationStore'
 // заглушка выбора метода
 
 export default {
-  components: { SidebarMenu, MdEditor },
+  components: { SidebarMenu, MdEditor, MdPreview },
   setup() {
     const applicationStore = useApplicationStore()
     const router = useRouter()
@@ -95,7 +95,36 @@ export default {
 
     // содержимое редактора ввода markdown
     const editorContent = ref('# Hello Editor')
+    const editorToolbars = ref([
+      'bold',
+      'underline',
+      'italic',
+      '-',
+      'strikeThrough',
+      'title',
+      'sub',
+      'sup',
+      'quote',
+      'unorderedList',
+      'orderedList',
+      'task', // ^2.4.0
+      '-',
+      'codeRow',
+      'code',
+      'table',
+      'mermaid',
+      'katex',
+      '-',
+      'revoke',
+      'next',
+      '=',
+      'preview',
+      'catalog'
+    ])
+    const htmlContent = ref('')
     const editorRef = ref()
+
+    const templateReportName = ref('')
 
     onMounted(async () => {
       // Заполняем объекты sidebarMenu, tabMenu получаем количество и наименования групп
@@ -224,18 +253,19 @@ export default {
     }
 
     // обработчик изменения текста редактора
-    const onEditorChange = (val) => {
-      console.log(val)
-    }
+    const onEditorChange = (val) => {}
 
     // обработчик получения html редактора
     const onEditorHtmlChanged = (val) => {
-      console.log(val)
+      htmlContent.value = val
     }
 
     // обработчки создания отчета по шаблону
     function onEditorReportCreateClick() {
-      templateReportCreate(editorContent.value)
+      templateReportCreate(editorContent.value, htmlContent.value, templateReportName.value)
+      editorRef.value?.on('htmlPreview', (status) => console.log(status))
+      console.log(editorRef.value)
+      console.log(editorContent.value)
     }
 
     return {
@@ -279,7 +309,10 @@ export default {
       dialogEditorActive,
       onButtonDialogEditorClick,
       editorContent,
+      editorToolbars,
       editorRef,
+      htmlContent,
+      templateReportName,
       onEditorChange,
       onEditorHtmlChanged,
       onEditorReportCreateClick
@@ -532,10 +565,21 @@ export default {
                 @change="onEditorChange"
                 ref="editorRef"
                 @onHtmlChanged="onEditorHtmlChanged"
+                :toolbars="editorToolbars"
               ></MdEditor>
+              <!--              <MdPreview editorId="1" v-model="editorContent"-->
+              <!--              ></MdPreview>-->
             </div>
             <template #footer>
-              <Button label="Отмена" icon="pi pi-times" @click="dialogEditorActive = false" text />
+              <!--              <label for="template-report-name">Наименование html</label>-->
+              <InputText
+                id="template-report-name"
+                type="text"
+                v-model="templateReportName"
+                labe
+              ></InputText>
+              .html
+              <Button label="Скрыть" icon="pi pi-minus" @click="dialogEditorActive = false" text />
               <Button label="Создать отчет" icon="pi pi-check" @click="onEditorReportCreateClick" />
             </template>
           </Dialog>

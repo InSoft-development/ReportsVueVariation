@@ -21,6 +21,7 @@ import Checkbox from 'primevue/checkbox'
 import ProgressBar from 'primevue/progressbar'
 import ProgressSpinner from 'primevue/progressspinner'
 import Dialog from 'primevue/dialog'
+import InputText from 'primevue/inputtext'
 
 const app = createApp(App)
 
@@ -38,5 +39,6 @@ app.component('Checkbox', Checkbox)
 app.component('ProgressBar', ProgressBar)
 app.component('ProgressSpinner', ProgressSpinner)
 app.component('Dialog', Dialog)
+app.component('InputText', InputText)
 
 app.mount('#app')
