@@ -987,7 +987,9 @@ def get_html(report_name):
     logger.info(f"get_html({report_name})")
     html_path = f'{constants.REPORTS_CUSTOM}{report_name}.html'
     html_dir_web_path = f'web{os.sep}report.html'
+    html_dir_web_interval_path = f'web{os.sep}interval{os.sep}report.html'
     shutil.copy(html_path, html_dir_web_path)
+    shutil.copy(html_path, html_dir_web_interval_path)
     return "success"
 
 
