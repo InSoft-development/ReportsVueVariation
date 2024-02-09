@@ -2,7 +2,7 @@ import os
 import errno
 from loguru import logger
 
-import utils.constants_and_paths as constants
+import constants_and_paths as constants
 
 logger.info(f"start utils{os.sep}prepare_structure.py")
 
