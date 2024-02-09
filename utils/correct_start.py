@@ -39,6 +39,12 @@ def check_correct_application_structure():
             logger.error(e)
 
     try:
+        os.mkdir(f'{constants.WEB_DIR}')
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            logger.error(e)
+
+    try:
         os.mkdir(f'{constants.WEB_INTERVAL_DIR}')
     except OSError as e:
         if e.errno != errno.EEXIST:

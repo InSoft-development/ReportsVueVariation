@@ -11,7 +11,8 @@ DATA_CSV_DIRECTORY = f'{DATA_DIRECTORY}csv_data{os.sep}'
 REPORTS_DIRECTORY = f'reports{os.sep}'
 REPORTS_CUSTOM = f'{REPORTS_DIRECTORY}custom{os.sep}'
 
-WEB_INTERVAL_DIR = f'web{os.sep}interval'
+WEB_DIR = f'web{os.sep}'
+WEB_INTERVAL_DIR = f'{WEB_DIR}interval'
 
 CSV_SLICES = f'{DATA_CSV_DIRECTORY}slices.csv'
 CSV_KKS_WITH_GROUPS = f'{DATA_DIRECTORY}kks_with_groups.csv'
