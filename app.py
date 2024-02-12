@@ -908,13 +908,19 @@ def rebuild_anomaly_interval(method,
             df_rolled.index = df_rolled['timestamp']
             df_rolled = df_rolled.drop(columns=['timestamp'])
 
+            power = df_slices
+            POWER_LIMIT = config["model"]["N"]
+            POWER_INDEX = config["model"]["approx_sensors"][-1]
+
             interval_list, idx_list = get_anomaly_interval(df_rolled['target_value'],
                                                            threshold_short=SHORT_THRESHOLD,
                                                            threshold_long=LONG_THRESHOLD,
                                                            len_long=LEN_LONG_ANOMALY,
                                                            len_short=LEN_SHORT_ANOMALY,
                                                            count_continue_short=COUNT_CONTINUE_SHORT,
-                                                           count_continue_long=COUNT_CONTINUE_LONG)
+                                                           count_continue_long=COUNT_CONTINUE_LONG,
+                                                           power=power[POWER_INDEX],
+                                                           power_limit=POWER_LIMIT)
 
             # отбрасываем лишние датчики, перечисленные в config_plot_SOCHI
             for sensor in DROP_LIST:

@@ -36,7 +36,22 @@ def rolling_probability(df, roll_in_hours, number_of_samples):
     return df
 
 
-def get_anomaly_interval(loss, threshold_short, threshold_long, len_long, len_short, count_continue_short=10,
+def check_power(power, index, power_limit, left_power_shift=15, right_power_shift=15):
+    """
+    Функция проверки выделяемого интервала по мощности для отсечения остановов
+    :param power: pandas фрейм со срезами сигналов
+    :param index: индекс строки в фрейме с целевой переменной target_value
+    :param power_limit: ограничение по мощности
+    :param left_power_shift: сдвиг влево
+    :param right_power_shift:  сдвиг вправо
+    :return: True: выделяемый интервал находится вне останова
+             False: выделяемый интервал находится вблизи останова
+    """
+    return any(val < power_limit for val in power[index-left_power_shift:right_power_shift+15])
+
+
+def get_anomaly_interval(loss, threshold_short, threshold_long, len_long, len_short, power, power_limit,
+                         count_continue_short=10,
                          count_continue_long=15):
     """
     Функция выделения интервалов
@@ -45,6 +60,8 @@ def get_anomaly_interval(loss, threshold_short, threshold_long, len_long, len_sh
     :param threshold_long: порог для определения аномального значения для поиска длинных интервалов
     :param len_long: настройка определяет минимальную длину длинного обнаруженного интервала аномалии
     :param len_short: настройка определяет минимальную длину короткого обнаруженного интервала аномалии
+    :param power: pandas фрейм со срезами сигналов
+    :param power_limit: ограничение по мощности
     :param count_continue_short: количество отсчетов для прерывания короткого интервала
     :param count_continue_long: количество отсчетов для прерывания длинного интервала
     :return: long_interval_list + short_interval_list: массив значений выделенных интервалов
@@ -60,8 +77,9 @@ def get_anomaly_interval(loss, threshold_short, threshold_long, len_long, len_sh
     sum_anomaly = 0
     for val in loss:
         i += 1
-        if val > threshold_long:
+        if val > threshold_long and check_power(power, i, power_limit):
             loss_interval.append(val)
+            count = 0
         else:
             count += 1
             loss_interval.append(val)
@@ -82,6 +100,7 @@ def get_anomaly_interval(loss, threshold_short, threshold_long, len_long, len_sh
         i += 1
         if val > threshold_short:
             loss_interval.append(val)
+            count = 0
         else:
             count += 1
             loss_interval.append(val)
