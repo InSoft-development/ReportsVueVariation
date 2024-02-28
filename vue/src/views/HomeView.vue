@@ -185,7 +185,8 @@ export default {
 <template>
   <main>
     <h2 class="color-h2">{{ targetLabel }}</h2>
-    <div class="container position-relative">
+   <div class="card">
+    <div class="container_G">
       <div
         class="row position-absolute top-50 start-50 translate-middle z-1"
         v-show="spinnerFlagHome"
@@ -206,6 +207,9 @@ export default {
         </UPlotlyInterval>
       </div>
     </div>
+   </div>
+
+
     <h4 class="color-h4">Добавить период</h4>
     <div class="container">
       <div class="row">
@@ -300,4 +304,35 @@ export default {
 .color-h4 {
   color: #1f77b4;
 }
+.card{
+ position: relative;
+ width: 1000px;
+ height: 520px;
+ padding: 80px 50px 20px;
+ box-shadow: 15px 15px 20px rgba(0,0,0,0.1),
+ -15px -15px 20px #fffb;
+ border-radius: 20px;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ 
+}
+ 
+ 
+
+ .container_G{  
+  position: relative;
+  top: -40px;
+  height: 350px;
+  padding: 0;
+  box-shadow: 15px 15px 20px rgba(0,0,0,0.1),
+ -15px -15px 20px #fffb;
+ border-radius: 20px;
+ justify-content: center;
+ align-items: center;
+ 
+ }
+
+
+
 </style>

@@ -11,6 +11,8 @@ import 'bootstrap'
 import App from './App.vue'
 import router from './router'
 
+import '@fortawesome/fontawesome-free/js/all'
+
 import globalComponents from './components/global'
 
 import Button from 'primevue/button'

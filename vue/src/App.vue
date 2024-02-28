@@ -1,4 +1,13 @@
 <script>
+// //////////////////////// SIDEBAR ////////////////////////////////////
+import Sidebar from './components/Sidebar/Sidebar.vue'
+import { collapsed, toggleSidebar, sidebarWidth } from './components/Sidebar/state'
+// ////////////////////////////////////////////////////////////
+import TabNav from './components/TabNav.vue';
+import Tab from './components/Tab.vue';
+
+
+
 import { useRouter, useRoute } from 'vue-router'
 import { ref, reactive, onMounted, watch } from 'vue'
 import { SidebarMenu } from 'vue-sidebar-menu'
@@ -36,8 +45,24 @@ import { useApplicationStore } from './stores/applicationStore'
 // заглушка выбора метода
 
 export default {
-  components: { SidebarMenu, MdEditor, MdPreview },
+  components: { SidebarMenu, MdEditor, MdPreview, Sidebar, TabNav, Tab },
+  props: {},
+    setup() {
+        return { collapsed, toggleSidebar, sidebarWidth };
+    },
+    date(){
+      return{
+        selected: 'Home'
+      }
+    },
+    methods:{
+      setSelected(tab){
+        this.selected = tab;
+      },
+      
+    },
   setup() {
+    
     const applicationStore = useApplicationStore()
     const router = useRouter()
     const route = useRoute()
@@ -48,6 +73,9 @@ export default {
     let checkedToggleCollapse = ref(false)
     let checkedSettingsAndTabsFlag = ref(false)
     let checkedButtonPdf = ref(false)
+
+    
+    
 
     // tabMenu
     let tabMenu = ref([])
@@ -151,19 +179,22 @@ export default {
       { immediate: true }
     )
 
-    // обработчик нажатия на кнопки меню sidebarMenu
+    // обработчик нажатия на кнопки меню sidebarMenu //////////////////////////////////////////////////////////////////////////////////////////////////
     const onSidebarMenuItemClick = (event, item) => {
       console.log(event, item)
       checkedSettingsFlag.value = item.href === '/settings'
       checkedSettingsAndTabsFlag.value = item.href === '/settings' || item.href === '/addition'
       checkedButtonPdf.value = item.href === '/settings' || item.href === '/addition'
     }
-
+// ///////////////////////////////////////////////////////////////////////////
     // обработчик нажатия на кнопку скрытия sidebarMenu
     const onSidebarToggleCollapse = (collapsed) => {
       console.log(collapsed)
       checkedToggleCollapse.value = collapsed
+      
     }
+   
+// ////////////////////////////////////////////////////////////////////////////
 
     // обработчик нажатия на кнопки выбора метода
     function onChangeRadioButtons() {
@@ -267,6 +298,9 @@ export default {
       console.log(editorRef.value)
       console.log(editorContent.value)
     }
+// ////////////////////////////////////////////////////////
+   
+// ///////////////////////////////////////////////////////
 
     return {
       theme,
@@ -315,39 +349,64 @@ export default {
       templateReportName,
       onEditorChange,
       onEditorHtmlChanged,
-      onEditorReportCreateClick
+      onEditorReportCreateClick,
+      // ///// SIDEBAR //////////
+      sidebarWidth,
+      toggleSidebar
+      // ///////////////////////
+      
+    
     }
   }
+
+
+
 }
 </script>
+<!-- onSidebarToggleCollapse -->
+<!-- @update:collapsed="onSidebarToggleCollapse"    -->
+<!-- @item-click="onSidebarMenuItemClick"  -->
+<!-- v-if="!checkedSettingsFlag && !checkedToggleCollapse" -->
 
 <template>
-  <div>
-    <sidebar-menu
+  <!-- <Sidebar/> -->
+  
+  
+    <sidebar-menu 
+      class="Sdbr"
+         
       :theme="theme.value"
-      :menu="sidebarMenu.menu"
-      @update:collapsed="onSidebarToggleCollapse"
-      @item-click="onSidebarMenuItemClick"
+      :menu="sidebarMenu.menu"             
+      @update:collapsed="onSidebarToggleCollapse(!checkedSettingsFlag && !checkedToggleCollapse), toggleSidebar()"    
+      @item-click="onSidebarMenuItemClick" 
       width="450px"
+      :style="{width: sidebarWidth}"      
     >
-      <template v-slot:footer v-if="!checkedSettingsFlag && !checkedToggleCollapse">
+
+
+   
+     
+    <template v-slot:footer v-if="!checkedSettingsFlag && !checkedToggleCollapse">
+        <!-- <div v-if="!checkedSettingsFlag && !checkedToggleCollapse "> -->
+
+       
+      <section class="radio-section">
+      <div class="radio-list">
         <div class="form-check">
           <input
-            class="form-check-input"
             type="radio"
             id="potentials"
             name="potentials"
             value="potentials"
             v-model="pickedMethod"
             @change="onChangeRadioButtons"
+            
           />
-          <label class="form-check-label" for="potentials">
-            <span class="badge rounded-pill bg-primary">potentials</span>
-          </label>
+          <label for="potentials">potentials</label>           
         </div>
+
         <div class="form-check">
-          <input
-            class="form-check-input"
+          <input            
             type="radio"
             id="LSTM"
             name="LSTM"
@@ -355,13 +414,15 @@ export default {
             v-model="pickedMethod"
             @change="onChangeRadioButtons"
           />
-          <label class="form-check-label" for="LSTM">
-            <span class="badge rounded-pill bg-primary">LSTM</span>
-          </label>
+          <label for="LSTM">LSTM</label>     
         </div>
-        <div>
+      </div>
+      </section>
+
+
+        <div class="form_select_1">
           <select
-            class="form-select"
+            class="form_select"
             aria-label="Default select example"
             id="select-group"
             v-model="pickedGroup"
@@ -372,16 +433,20 @@ export default {
             </option>
           </select>
         </div>
-        <div class="row">
-          <div class="col-2" v-if="!checkedButtonPdf">
-            <Button @click="onButtonPdfClick">PDF</Button>
+
+
+        <div class="row_1">
+          <div class="row_1_1" v-if="!checkedButtonPdf">
+            <Button class="btn_1" @click="onButtonPdfClick">PDF</Button>
           </div>
-          <div class="col-10 align-self-center" v-if="progressBarActive">
-            <ProgressBar :value="progressBarValue"></ProgressBar>
+          <div v-if="progressBarActive">
+            <ProgressBar class="col-10 align-self-center" :value="progressBarValue"></ProgressBar>
           </div>
         </div>
-        <div v-if="!checkedButtonPdf">
-          <Button @click="onButtonDialogClick">Выделение интервалов</Button>
+
+
+        <div class="row_1" v-if="!checkedButtonPdf">
+          <Button class="btn_1" @click="onButtonDialogClick">Выделение интервалов</Button>
           <Dialog
             v-model="dialogActive"
             :visible="dialogActive"
@@ -546,8 +611,8 @@ export default {
             </template>
           </Dialog>
         </div>
-        <div>
-          <Button @click="onButtonDialogEditorClick">Редактор отчетов</Button>
+        <div class="row_1">
+          <Button class="btn_1" @click="onButtonDialogEditorClick">Редактор отчетов</Button>
           <Dialog
             v-model="dialogEditorActive"
             :visible="dialogEditorActive"
@@ -567,11 +632,10 @@ export default {
                 @onHtmlChanged="onEditorHtmlChanged"
                 :toolbars="editorToolbars"
               ></MdEditor>
-              <!--              <MdPreview editorId="1" v-model="editorContent"-->
-              <!--              ></MdPreview>-->
+             
             </div>
             <template #footer>
-              <!--              <label for="template-report-name">Наименование html</label>-->
+             
               <InputText
                 id="template-report-name"
                 type="text"
@@ -581,41 +645,244 @@ export default {
               .html
               <Button label="Скрыть" icon="pi pi-minus" @click="dialogEditorActive = false" text />
               <Button label="Создать отчет" icon="pi pi-check" @click="onEditorReportCreateClick" />
+              
             </template>
           </Dialog>
         </div>
+      <!-- </div> -->
       </template>
-    </sidebar-menu>
-  </div>
-  <div class="common-margin-left">
-    <div v-if="!checkedSettingsAndTabsFlag">
-      <h1 class="text-center">Метод {{ pickedMethod }}: группа {{ pickedGroup }}</h1>
-      <TabMenu v-model:active-index="activeTabMenu" :model="tabMenu" class="p-tabmenu-nav">
-        <template #item="{ label, item, props }">
-          <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
-            <a
-              :href="routerProps.href"
-              v-bind="props.action"
-              @click="($event) => routerProps.navigate($event)"
-              @keydown.enter.space="($event) => routerProps.navigate($event)"
-            >
-              <span v-bind="props.label">{{ label }}</span>
-            </a>
-          </router-link>
-        </template>
-      </TabMenu>
-    </div>
-    <RouterView
-      :active-method="pickedMethod"
-      :active-group="pickedGroup"
-      :flag-home-page-update="flagHomePageUpdate"
-      @updateNewInterval="newAddedIntervalToMenus"
-      class="common-margin-left"
-    />
-  </div>
+    
+     </sidebar-menu>
+
+  
+  <div :style="{'margin-left': sidebarWidth}">
+      <div class="common-margin-left">
+        <div v-if="!checkedSettingsAndTabsFlag">
+          <h1 class="text-center">Метод {{ pickedMethod }}: группа {{ pickedGroup }}</h1>
+          <TabNav :tabs="['Home', 'Settings', 'Profile']" :selected="selected" @selected="setSelected">
+            <Tab :isSelected="selected === 'Home'"><p>Some test text</p> </Tab>
+            <Tab :isSelected="selected === 'Settings'"> <h1>More test text</h1> </Tab>
+            <Tab :isSelected="selected === 'Profile'">
+
+              <ul>
+                <li>List test1</li>
+                <li>List test2</li>
+                <li>List test3</li>
+              </ul>
+            
+            </Tab>    
+
+
+          </TabNav>
+
+      
+        
+
+          <!-- <TabMenu v-model:active-index="activeTabMenu" :model="tabMenu" class="p-tabmenu-nav">
+            <template #item="{ label, item, props }">
+              <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
+                <a
+                  :href="routerProps.href"
+                  v-bind="props.action"
+                  @click="($event) => routerProps.navigate($event)"
+                  @keydown.enter.space="($event) => routerProps.navigate($event)"
+                >
+                  <span v-bind="props.label">{{ label }}</span>
+                </a>
+              </router-link>
+            </template>
+          </TabMenu> -->
+
+          
+        </div>
+        <RouterView
+          :active-method="pickedMethod"
+          :active-group="pickedGroup"
+          :flag-home-page-update="flagHomePageUpdate"
+          @updateNewInterval="newAddedIntervalToMenus"
+          class="common-margin-left"
+        />
+      </div>
+</div>
 </template>
 
 <style scoped>
+/* //////////////// Button RADIO///////////////////// */
+/* *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+body{
+  padding: 0;
+  margin: 0;
+  color: #fff;
+}
+.Sdbr{
+  background-color:#1e293b;
+  border-start-end-radius: 50px 50px;
+  color: #fff;
+
+}
+.radio-section{
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  margin-top: 10px;
+  
+}
+.form-check {
+  padding-left: 1.2em;
+  margin-bottom: 1px;
+}
+.form-check [type="radio"]{
+  display: none;
+}
+.form-check + .form-check{
+  margin-top: 10px;
+}
+.form-check label{
+  display: block;
+  padding: 10px 20px 10px 50px;
+  background: #1e293b;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  min-width: 150px;
+  white-space: nowrap;
+  position: relative;
+  /* transition: .4s ease-in-out 0s; */
+}
+.form-check label:after,
+.form-check label:before{
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.form-check label:after{
+  height: 20px;
+  width: 20px;
+  border: 2px solid #fff;
+  left: 20px;
+  top: calc(50% - 10px);
+}
+.form-check label:before{
+  background: #fff;
+  height: 10px;
+  width: 10px;
+  left: 25px;
+  top: calc(50% - 5px);
+  transform: scale(5);
+  opacity: 0;
+  visibility: hidden;
+  transition: .4s ease-in-out 0s;
+}
+.form-check [type="radio"]:checked ~ label{
+  border-color: #fff;
+}
+.form-check [type="radio"]:checked ~ label:before{
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+/* ////////////////////    form-select /////////////////////////// */
+.form_select_1{
+  
+  background: #1e293b;
+  border-radius: 15px;
+  color: #fff;
+  min-width: 150px;
+  display: block;
+  padding: 10px 20px 10px 50px;
+  cursor: pointer;
+  padding-left: 1.2em;
+  margin-bottom: 5px;
+}
+.form_select{
+  
+  color: #fff;
+  background: #1e293b;
+  border-radius: 15px;  
+  min-width: 150px;
+  display: block;
+  padding: 10px 20px 10px 50px;
+  cursor: pointer;
+  padding-left: 1.2em;
+  margin-bottom: 5px;
+}
+/* ///////////////// BUTTON ///////////////// */
+.row_1{
+  display: inline-block;
+  /* vertical-align: top; */
+  margin-bottom: 5px;
+  /* padding: 8px 21px; */
+  padding: 0px 0px 0px 20px;
+  font-size: 14px;
+  font-weight: 400;
+ 
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+.btn_1{
+  display: inline-block;
+  margin-bottom: 5px;
+  /* vertical-align: top; */
+  background: #1e293b;
+  /* padding: 10px 20px 10px 50px; */
+  /* padding: 0px 0px 0px 20px; */
+  border: 2px solid #fff;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  
+  
+  transition: background .1s linear, color .1s linear;
+}
+
+
+
+
+.btn_1:hover{
+  background-color: #fff;
+  color: #1e293b;
+}
+
+.row_1_1{
+  margin-bottom: 5px;
+}
+/* ///////////////// ProgressBar ////////////////// */
+
+.progress{
+  background-color: #363636;
+  width: 270px;
+  height: 20px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+/* .progress__item{
+  border-radius: 100px;
+  height: 100%;
+  background-image: linear-gradient(90deg, #7ee8fa,#ff8494);
+  animation: progressBarActive linear alternate;
+  width: 0;
+}
+@keyframes progressBarActive{
+ 
+  100%{
+    width: 100%;
+  }
+}  */
+
+
+
+/* ///////////////////////////////////// */
 .common-margin-left {
   margin-left: 5%;
 }
@@ -627,4 +894,18 @@ export default {
   list-style-type: none;
   flex-wrap: nowrap;
 }
+
+.collapse-icon{
+    position: absolute;
+    bottom: 0;
+    padding: 0.75em;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.2s linear;
+}
+.rotate-180{
+    transform: rotate(180deg);
+    transition: 0.2s linear;
+}
+
+
 </style>
