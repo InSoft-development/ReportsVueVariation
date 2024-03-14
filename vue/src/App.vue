@@ -1,6 +1,6 @@
 <script>
 // //////////////////////// SIDEBAR ////////////////////////////////////
-import Sidebar from './components/Sidebar/Sidebar.vue'
+// import Sidebar from './components/Sidebar/Sidebar.vue'
 import { collapsed, toggleSidebar, sidebarWidth } from './components/Sidebar/state'
 // ////////////////////////////////////////////////////////////
 import TabNav from './components/TabNav.vue';
@@ -47,7 +47,8 @@ import { useApplicationStore } from './stores/applicationStore'
 // заглушка выбора метода
 
 export default {
-  components: { SidebarMenu, MdEditor, MdPreview, Sidebar, TabNav, Tab, Header },
+  // components: { SidebarMenu, MdEditor, MdPreview, Sidebar, TabNav, Tab, Header },
+  components: { SidebarMenu, MdEditor, MdPreview, TabNav, Tab, Header },
   props: {},
     setup() {
         return { collapsed, toggleSidebar, sidebarWidth };
