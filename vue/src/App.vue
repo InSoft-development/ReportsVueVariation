@@ -6,6 +6,8 @@ import { collapsed, toggleSidebar, sidebarWidth } from './components/Sidebar/sta
 import TabNav from './components/TabNav.vue';
 import Tab from './components/Tab.vue';
 
+import Header from './components/header/Header.vue';
+
 
 
 import { useRouter, useRoute } from 'vue-router'
@@ -45,7 +47,7 @@ import { useApplicationStore } from './stores/applicationStore'
 // заглушка выбора метода
 
 export default {
-  components: { SidebarMenu, MdEditor, MdPreview, Sidebar, TabNav, Tab },
+  components: { SidebarMenu, MdEditor, MdPreview, Sidebar, TabNav, Tab, Header },
   props: {},
     setup() {
         return { collapsed, toggleSidebar, sidebarWidth };
@@ -443,11 +445,13 @@ export default {
             <ProgressBar class="col-10 align-self-center" :value="progressBarValue"></ProgressBar>
           </div>
         </div>
+        <!-- :style="{ width: '50rem' }" -->
 
 
         <div class="row_1" v-if="!checkedButtonPdf">
           <Button class="btn_1" @click="onButtonDialogClick">Выделение интервалов</Button>
           <Dialog
+            class="Dialog_1"
             v-model="dialogActive"
             :visible="dialogActive"
             :closable="false"
@@ -455,11 +459,14 @@ export default {
             position="left"
             :modal="true"
             :draggable="false"
-            :style="{ width: '50rem' }"
+            :style="{ width: '50rem'}"
+            
           >
+
+          <!-- font-bold block mb-2 -->
             <div class="container">
               <div class="row">
-                <label for="input-rolling" class="font-bold block mb-2">
+                <label for="input-rolling" class="font-bold block mb-2 ">
                   Сглаживание в часах
                 </label>
               </div>
@@ -659,7 +666,8 @@ export default {
       <div class="common-margin-left">
         <div v-if="!checkedSettingsAndTabsFlag">
           <h1 class="text-center">Метод {{ pickedMethod }}: группа {{ pickedGroup }}</h1>
-          <TabNav :tabs="['Home', 'Settings', 'Profile']" :selected="selected" @selected="setSelected">
+          <Header/>
+          <!-- <TabNav :tabs="['Home', 'Settings', 'Profile']" :selected="selected" @selected="setSelected">
             <Tab :isSelected="selected === 'Home'"><p>Some test text</p> </Tab>
             <Tab :isSelected="selected === 'Settings'"> <h1>More test text</h1> </Tab>
             <Tab :isSelected="selected === 'Profile'">
@@ -673,7 +681,7 @@ export default {
             </Tab>    
 
 
-          </TabNav>
+          </TabNav> -->
 
       
         
@@ -721,7 +729,7 @@ body{
 }
 .Sdbr{
   background-color:#1e293b;
-  border-start-end-radius: 50px 50px;
+  /* border-start-end-radius: 50px 50px; */
   color: #fff;
 
 }
@@ -730,24 +738,25 @@ body{
   align-items: end;
   justify-content: start;
   margin-top: 10px;
+  margin-left: 1px;
   
 }
 .form-check {
-  padding-left: 1.2em;
+  padding-left: 0;
   margin-bottom: 1px;
 }
 .form-check [type="radio"]{
   display: none;
 }
 .form-check + .form-check{
-  margin-top: 10px;
+  margin-top: 1px;
 }
 .form-check label{
   display: block;
   padding: 10px 20px 10px 50px;
   background: #1e293b;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
+  /* border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px; */
   cursor: pointer;
   font-size: 18px;
   font-weight: 400;
@@ -780,6 +789,8 @@ body{
   visibility: hidden;
   transition: .4s ease-in-out 0s;
 }
+
+
 .form-check [type="radio"]:checked ~ label{
   border-color: #fff;
 }
@@ -792,7 +803,7 @@ body{
 .form_select_1{
   
   background: #1e293b;
-  border-radius: 15px;
+  border-radius: 5px;
   color: #fff;
   min-width: 150px;
   display: block;
@@ -801,14 +812,13 @@ body{
   padding-left: 1.2em;
   margin-bottom: 5px;
 }
-.form_select{
-  
+.form_select{  
   color: #fff;
   background: #1e293b;
-  border-radius: 15px;  
+  border-radius: 5px;  
   min-width: 150px;
   display: block;
-  padding: 10px 20px 10px 50px;
+  padding: 10px 10px 10px 50px;
   cursor: pointer;
   padding-left: 1.2em;
   margin-bottom: 5px;
@@ -834,8 +844,8 @@ body{
   background: #1e293b;
   /* padding: 10px 20px 10px 50px; */
   /* padding: 0px 0px 0px 20px; */
-  border: 2px solid #fff;
-  border-radius: 15px;
+  border: 1px solid #fff;
+  border-radius: 5px;
   font-size: 14px;
   font-weight: 400;
   color: #fff;
@@ -883,7 +893,11 @@ body{
 
 
 /* ///////////////////////////////////// */
-.common-margin-left {
+.Dialog_1{
+  background-color: #1e293b;
+}
+/* ///////////////////////////////////// */
+/* .common-margin-left {
   margin-left: 5%;
 }
 .p-tabmenu-nav {
@@ -905,7 +919,7 @@ body{
 .rotate-180{
     transform: rotate(180deg);
     transition: 0.2s linear;
-}
+} */
 
 
 </style>

@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/primeicons@6.0.1/primeicons.css"> -->
+    
     <title>ReportsVue</title>
     <script type=text/javascript src=/eel.js></script>
     <script type="text/javascript">
+      
       setInterval(() => {
         if ((eel._websocket.readyState === WebSocket.CLOSED) || (eel._websocket.readyState === WebSocket.CLOSING)){
           alert("Веб-сокет закрылся обновите главную страницу веб-приложения")

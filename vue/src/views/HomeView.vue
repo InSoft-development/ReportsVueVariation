@@ -1,4 +1,7 @@
 <script>
+// //////////////////////////Header//////////////////
+import  Header  from '../components/header/Header.vue'
+// ///////////////////////////////////////////////////
 import { ref, reactive, onMounted, watch } from 'vue'
 
 import { useApplicationStore } from '../stores/applicationStore'
@@ -16,7 +19,7 @@ import {
 
 export default {
   name: 'HomeView',
-  components: { UPlotlyInterval, UAddedRow },
+  components: { UPlotlyInterval, UAddedRow, Header },
   props: {
     activeMethod: String,
     activeGroup: String,
@@ -183,6 +186,7 @@ export default {
 </script>
 
 <template>
+  
   <main>
     <h2 class="color-h2">{{ targetLabel }}</h2>
    <div class="card">
@@ -304,7 +308,7 @@ export default {
 .color-h4 {
   color: #1f77b4;
 }
-.card{
+/* .card{
  position: relative;
  width: 1000px;
  height: 520px;
@@ -316,11 +320,11 @@ export default {
  align-items: center;
  flex-direction: column;
  
-}
+} */
  
  
 
- .container_G{  
+ /* .container_G{  
   position: relative;
   top: -40px;
   height: 350px;
@@ -331,7 +335,7 @@ export default {
  justify-content: center;
  align-items: center;
  
- }
+ } */
 
 
 
