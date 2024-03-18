@@ -723,11 +723,20 @@ export default {
   box-sizing: border-box;
 } */
 
-body{
+/* body{
   padding: 0;
   margin: 0;
   color: #fff;
-}
+} */
+ /* body {
+    font-family: var(--font-family);
+    font-weight: normal;
+    background: var(--surface-ground);
+    color: var(--text-color);
+    padding: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} */
 .Sdbr{
   background-color:#1e293b;
   /* border-start-end-radius: 50px 50px; */

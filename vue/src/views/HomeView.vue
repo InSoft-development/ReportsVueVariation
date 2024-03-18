@@ -190,7 +190,7 @@ export default {
   <main>
     <h2 class="color-h2">{{ targetLabel }}</h2>
    <div class="card">
-    <div class="container_G">
+    <div class="container position-relative">
       <div
         class="row position-absolute top-50 start-50 translate-middle z-1"
         v-show="spinnerFlagHome"
@@ -308,6 +308,21 @@ export default {
 .color-h4 {
   color: #1f77b4;
 }
+
+/* body {
+    font-family: var(--font-family);
+    font-weight: normal;
+    background: var(--surface-ground);
+    color: var(--text-color);
+    padding: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} */
+/* .plot-container plotly{
+  position: relative;
+  width: 1299px;
+  height: 450px;
+} */
 /* .card{
  position: relative;
  width: 1000px;
@@ -335,7 +350,7 @@ export default {
  justify-content: center;
  align-items: center;
  
- } */
+ }  */
 
 
 
