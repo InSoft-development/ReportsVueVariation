@@ -188,9 +188,11 @@ export default {
 <template>
   
   <main>
-    <h2 class="color-h2">{{ targetLabel }}</h2>
+    
    <!-- <div class="card"> -->
-    <div class="container position-relative">
+    <div class="container position-relative" style="border-radius: 10px;">
+       <h2 class="color-h2">{{ targetLabel }}</h2>
+
       <div
         class="row position-absolute top-50 start-50 translate-middle z-1"
         v-show="spinnerFlagHome"
@@ -304,10 +306,14 @@ export default {
 <style scoped>
 .color-h2 {
   color: #1f77b4;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .color-h4 {
   color: #1f77b4;
 }
+
 
 /* body {
     font-family: var(--font-family);

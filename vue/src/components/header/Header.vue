@@ -1,5 +1,5 @@
 <template>
-     <div class="card_1">
+     <div class="card_1 container position-relative">
         <TabView  :scrollable="true">
             <TabPanel class="pan" v-for="tab in scrollableTabs" :key="tab.title" :header="tab.title">
                 <p class="m-0">{{ tab.content }}</p>
@@ -51,6 +51,9 @@ html {
     border-radius: 10px;
     margin-bottom: 1rem;
     text-decoration: none;
+    width: 1299px;
+    /* margin-left: 257px;
+    position: relative; */
 }
 
 p {
