@@ -32,7 +32,7 @@ export default {
 <style>
 html {
     font-size: 14px;
-    scroll-behavior: smooth;
+    
 }
 /* background: var(--surface-ground); */
 
@@ -69,7 +69,7 @@ p {
   .p-tabview-nav-content {
     overflow-x: auto;
     overflow-y: hidden;
-    behavior: smooth;
+    scroll-behavior: smooth;
     scrollbar-width: none;
     overscroll-behavior: contain auto;
   }

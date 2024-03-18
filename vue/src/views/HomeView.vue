@@ -189,7 +189,7 @@ export default {
   
   <main>
     <h2 class="color-h2">{{ targetLabel }}</h2>
-   <div class="card">
+   <!-- <div class="card"> -->
     <div class="container position-relative">
       <div
         class="row position-absolute top-50 start-50 translate-middle z-1"
@@ -211,7 +211,7 @@ export default {
         </UPlotlyInterval>
       </div>
     </div>
-   </div>
+   <!-- </div> -->
 
 
     <h4 class="color-h4">Добавить период</h4>
