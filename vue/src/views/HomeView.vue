@@ -189,10 +189,10 @@ export default {
   
   <main>
     
-   <!-- <div class="card"> -->
-    <div class="container position-relative" style="border-radius: 10px;">
+   
+    <div class="container position-relative"  >
        <h2 class="color-h2">{{ targetLabel }}</h2>
-
+    <!-- <div class="card_2"> -->
       <div
         class="row position-absolute top-50 start-50 translate-middle z-1"
         v-show="spinnerFlagHome"
@@ -216,8 +216,11 @@ export default {
    <!-- </div> -->
 
 
-    <h4 class="color-h4">Добавить период</h4>
-    <div class="container">
+    
+    <div class="container position-relative">
+      <h4 class="color-h4">Добавить период</h4>
+
+      
       <div class="row">
         <div class="col">
           <div class="font-bold block mb-2">Начало периода</div>
@@ -254,12 +257,16 @@ export default {
             show-button-bar
             @clear-click="onDateTimeEndClearButtonClick"
           />
+
+          
         </div>
         <div class="col">
-          <br />
-          <Button @click="onButtonCreateClick">Создать</Button>
+          <br />          
+            <Button @click="onButtonCreateClick">Создать</Button>        
+                 
         </div>
       </div>
+
       <div class="row">
         <div class="col">
           <div class="alert alert-danger" role="alert" v-if="!dateTimeBegin">
@@ -274,12 +281,20 @@ export default {
         <div class="col"></div>
       </div>
     </div>
-    <br />
-    <div class="container">
+
+
+    <div class="container position-relative">
+      <br/>
+    </div>
+
+    
+    
+    <div class="container position-relative">
       <div class="row" v-if="Object.keys(addedToTableIntervals).length !== 0">
-        <div class="col">Добавленный период</div>
         <div class="col">Начало периода</div>
         <div class="col">Конец периода</div>
+        <div class="col">Добавленный период</div>
+      
         <div class="col"></div>
         <hr />
       </div>
@@ -299,7 +314,13 @@ export default {
         />
       </div>
     </div>
-    <br />
+
+    <div class="container position-relative">
+        <br/>
+    </div>
+
+    
+  
   </main>
 </template>
 
@@ -312,7 +333,22 @@ export default {
 }
 .color-h4 {
   color: #1f77b4;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
+.font-bold block mb-2{
+  margin-left: auto;
+}
+.col_b{
+  margin-top: 30px;
+}
+
+/* .card_2{
+  border-radius: 10px;
+  width: 1304px;
+  height: 455px;
+} */
 
 
 /* body {

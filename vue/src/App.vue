@@ -743,6 +743,10 @@ export default {
   color: #fff;
 
 }
+.text-center{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .radio-section{
   display: flex;
   align-items: end;
