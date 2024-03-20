@@ -851,7 +851,7 @@ export default {
   text-decoration: none;
   margin-bottom: 5px;
 }
-.btn_1{
+ .btn_1{
   display: inline-block;
   margin-bottom: 5px;
   /* vertical-align: top; */
@@ -868,6 +868,7 @@ export default {
   
   
   transition: background .1s linear, color .1s linear;
+  padding: 10px 20px 6px 20px;
 }
 
 

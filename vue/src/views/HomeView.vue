@@ -291,9 +291,10 @@ export default {
     
     <div class="container position-relative">
       <div class="row" v-if="Object.keys(addedToTableIntervals).length !== 0">
+        <div class="col">Добавленный период</div>
         <div class="col">Начало периода</div>
         <div class="col">Конец периода</div>
-        <div class="col">Добавленный период</div>
+        
       
         <div class="col"></div>
         <hr />
