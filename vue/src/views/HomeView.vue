@@ -262,7 +262,7 @@ export default {
         </div>
         <div class="services__item" style="left: 84px;">
           <br />          
-            <Button @click="onButtonCreateClick">Создать</Button>        
+            <Button class="btn" @click="onButtonCreateClick">Создать</Button>        
                  
         </div>
       </div>
@@ -349,6 +349,14 @@ export default {
 .services__item{
   flex: 1 1 0;
   position: relative; 
+}
+.btn{
+  background: #1f77b4;
+  color: #fff;
+}
+.btn:hover{
+  background-color: #244964;;
+  color: #fff;
 }
 
 
