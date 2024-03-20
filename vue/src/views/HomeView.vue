@@ -218,7 +218,7 @@ export default {
 
     
     <div class="container position-relative">
-      <h4 class="color-h4">Добавить период</h4>
+      <h2 class="color-h4">Добавить период</h2>
     
       
       <div class="services">
@@ -268,12 +268,12 @@ export default {
       </div>
 
       <div class="row">
-        <div class="col">
+        <div class="col" style="margin-left: 330px;">
           <div class="alert alert-danger" role="alert" v-if="!dateTimeBegin">
             Введите начало периода
           </div>
         </div>
-        <div class="col">
+        <div class="col" style="left: 55px;">
           <div class="alert alert-danger" role="alert" v-if="!dateTimeEnd">
             Введите конец периода
           </div>
