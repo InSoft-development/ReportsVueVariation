@@ -219,12 +219,13 @@ export default {
     
     <div class="container position-relative">
       <h4 class="color-h4">Добавить период</h4>
-
+    
       
-      <div class="row">
-        <div class="col">
-          <div class="font-bold block mb-2">Начало периода</div>
+      <div class="services">
+        <div class="services__item" style="left: 330px;">
+          <div class="services__title">Начало периода</div>
           <Calendar
+            class="services__text"
             id="calendar-begin"
             v-model="dateTimeBegin"
             show-time
@@ -240,9 +241,10 @@ export default {
             @clear-click="onDateTimeBeginClearButtonClick"
           />
         </div>
-        <div class="col">
-          <div class="font-bold block mb-2">Конец периода</div>
+        <div class="cservices__item" style="padding-left: 265px;">
+          <div class="services__title">Конец периода</div>
           <Calendar
+            class="services__text"
             id="calendar-end"
             v-model="dateTimeEnd"
             show-time
@@ -256,11 +258,9 @@ export default {
             show-icon
             show-button-bar
             @clear-click="onDateTimeEndClearButtonClick"
-          />
-
-          
+          />          
         </div>
-        <div class="col">
+        <div class="services__item" style="left: 84px;">
           <br />          
             <Button @click="onButtonCreateClick">Создать</Button>        
                  
@@ -281,7 +281,7 @@ export default {
         <div class="col"></div>
       </div>
     </div>
-
+    
 
     <div class="container position-relative">
       <br/>
@@ -299,6 +299,8 @@ export default {
         <div class="col"></div>
         <hr />
       </div>
+
+      
       <div v-for="val in addedToTableIntervals">
         <UAddedRow
           :id="val.id"
@@ -341,15 +343,13 @@ export default {
 .font-bold block mb-2{
   margin-left: auto;
 }
-.col_b{
-  margin-top: 30px;
+.services{
+  display: flex;
 }
-
-/* .card_2{
-  border-radius: 10px;
-  width: 1304px;
-  height: 455px;
-} */
+.services__item{
+  flex: 1 1 0;
+  position: relative; 
+}
 
 
 /* body {
