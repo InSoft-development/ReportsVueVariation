@@ -209,29 +209,31 @@ export default {
 
 <template>
   <main>
-    <div class="container">
+    <div class="container position-relative">
       <div class="row">
         <div class="col-md-6">
           <div>
-            <h4>{{ dateLabel }}</h4>
+            <h4 class="Num">{{ dateLabel }}</h4>
           </div>
         </div>
         <div class="col-md-3">
           <div>
-            <Button @click="onButtonPdfReportClick">PDF отчет</Button>
+            <Button @click="onButtonPdfReportClick" style="right: 225px;top: 12px;">PDF отчет</Button>
           </div>
         </div>
         <div class="col-md-3" v-if="progressTabBarActive">
           <div>
-            <ProgressBar :value="progressTabBarValue"></ProgressBar>
+            <ProgressBar  :value="progressTabBarValue"></ProgressBar>
           </div>
         </div>
       </div>
       <div class="row">
         <h3 class="color-h3">{{ targetLabel }}</h3>
       </div>
-    </div>
-    <div class="container position-relative">
+  
+
+
+     <div class="container position-relative">
       <div
         class="row position-absolute top-50 start-50 translate-middle z-1"
         v-show="spinnerFlagInterval"
@@ -245,14 +247,15 @@ export default {
         />
       </div>
       <div class="row">
-        <UPlotlyInterval
+        <UPlotlyInterval 
           :interval-data-target="PlotlyIntervalDataTarget"
           :interval-data-layout="PlotlyIntervalLayoutTarget"
         >
         </UPlotlyInterval>
       </div>
-    </div>
-    <div>
+     </div>
+
+     <!-- <div> -->
       <h3 class="color-h3">Сигналы, внесшие наибольший вклад</h3>
       <div>
         <div v-for="top of topSensors" :key="top.id" class="flex align-items-center">
@@ -282,13 +285,14 @@ export default {
         </div>
       </div>
       <div>
-        <div v-for="topSignal of selectedTopSensors">
-          <UPlotlyMultiAxises :selected-signal-checkbox="topSignal"></UPlotlyMultiAxises>
+        <div v-for="topSignal of selectedTopSensors"> 
+          <UPlotlyMultiAxises :selected-signal-checkbox="topSignal" ></UPlotlyMultiAxises>
         </div>
         <div v-for="otherSignal of selectedOtherGroupSensors">
           <UPlotlyMultiAxises :selected-signal-checkbox="otherSignal"></UPlotlyMultiAxises>
         </div>
       </div>
+     <!-- </div> -->
     </div>
   </main>
 </template>
@@ -296,5 +300,10 @@ export default {
 <style scoped>
 .color-h3 {
   color: #1f77b4;
+}
+.Num{
+  margin-left: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 </style>

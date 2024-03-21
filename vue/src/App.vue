@@ -716,27 +716,16 @@ export default {
 </template>
 
 <style scoped>
-/* //////////////// Button RADIO///////////////////// */
-/* *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
-/* body{
-  padding: 0;
-  margin: 0;
-  color: #fff;
-} */
- /* body {
-    font-family: var(--font-family);
-    font-weight: normal;
-    background: var(--surface-ground);
-    color: var(--text-color);
-    padding: 1rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-} */
+/* .p-button {
+    color: #ffffff;
+    background: #1f77b4;
+    border: 1px solid #1f77b4;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    border-radius: 4px;
+    outline-color: transparent;
+  } */
 .Sdbr{
   background-color:#1e293b;
   /* border-start-end-radius: 50px 50px; */

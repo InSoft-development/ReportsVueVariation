@@ -262,7 +262,9 @@ export default {
         </div>
         <div class="services__item" style="left: 84px;">
           <br />          
-            <Button class="btn" @click="onButtonCreateClick">Создать</Button>        
+            <Button  @click="onButtonCreateClick">
+                <div class="tt">Создать</div>            
+            </Button> 
                  
         </div>
       </div>
@@ -353,11 +355,27 @@ export default {
 .btn{
   background: #1f77b4;
   color: #fff;
-}
+  margin-bottom: 1px;
+  top: 2px;
+ }
+
 .btn:hover{
   background-color: #244964;;
   color: #fff;
 }
+/* .p-button {
+    color: #ffffff;
+    background: red;
+    border: 1px solid #007bff;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    border-radius: 4px;
+    outline-color: transparent;
+  } */
+/* .tt{
+  text-align: center;
+} */
 
 
 /* body {
