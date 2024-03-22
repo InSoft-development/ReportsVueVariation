@@ -209,6 +209,7 @@ export default {
 
 <template>
   <main>
+    
     <div class="container position-relative">
       <div class="row">
         <div class="col-md-6">
@@ -230,70 +231,73 @@ export default {
       <div class="row">
         <h3 class="color-h3">{{ targetLabel }}</h3>
       </div>
-  
+    
 
 
-     <div class="container position-relative">
-      <div
-        class="row position-absolute top-50 start-50 translate-middle z-1"
-        v-show="spinnerFlagInterval"
-      >
-        <ProgressSpinner
-          style="width: 100px; height: 100px"
-          stroke-width="5"
-          animation-duration=".3s"
-          fill="var(--surface-ground)"
-          class="z-2"
-        />
-      </div>
-      <div class="row">
-        <UPlotlyInterval 
-          :interval-data-target="PlotlyIntervalDataTarget"
-          :interval-data-layout="PlotlyIntervalLayoutTarget"
+     <!-- <div class="container position-relative"> -->
+        <div
+          class="row position-absolute top-50 start-50 translate-middle z-1"
+          v-show="spinnerFlagInterval"
         >
-        </UPlotlyInterval>
-      </div>
-     </div>
-
-     <!-- <div> -->
-      <h3 class="color-h3">Сигналы, внесшие наибольший вклад</h3>
-      <div>
-        <div v-for="top of topSensors" :key="top.id" class="flex align-items-center">
-          <Checkbox
-            v-model="selectedTopSensors"
-            :input-id="top.id"
-            name="top"
-            :value="top.name"
-            @change="changeCheckbox"
-          ></Checkbox>
-          <label :for="top.name">{{ top.name }}</label>
-          <br />
+          <ProgressSpinner
+            style="width: 100px; height: 100px"
+            stroke-width="5"
+            animation-duration=".3s"
+            fill="var(--surface-ground)"
+            class="z-2"
+          />
         </div>
-      </div>
-      <h3 class="color-h3">Остальные сигналы группы</h3>
-      <div>
-        <div v-for="other of otherGroupSensors" :key="other.id" class="flex align-items-center">
-          <Checkbox
-            v-model="selectedOtherGroupSensors"
-            :input-id="other.id"
-            name="other"
-            :value="other.name"
-            @change="changeCheckbox"
-          ></Checkbox>
-          <label :for="other.name">{{ other.name }}</label>
-          <br />
+        <div class="row">
+          <UPlotlyInterval 
+            :interval-data-target="PlotlyIntervalDataTarget"
+            :interval-data-layout="PlotlyIntervalLayoutTarget"
+          >
+          </UPlotlyInterval>
         </div>
-      </div>
-      <div>
-        <div v-for="topSignal of selectedTopSensors"> 
-          <UPlotlyMultiAxises :selected-signal-checkbox="topSignal" ></UPlotlyMultiAxises>
-        </div>
-        <div v-for="otherSignal of selectedOtherGroupSensors">
-          <UPlotlyMultiAxises :selected-signal-checkbox="otherSignal"></UPlotlyMultiAxises>
-        </div>
-      </div>
-     <!-- </div> -->
     </div>
+      <!-- </div> -->
+
+       <!-- <div class="container position-relative"> -->
+        <h3 class="color-h3" style="margin-top: 20px;margin-left: 78px;margin-bottom: 8px;">Сигналы, внесшие наибольший вклад</h3>
+        <div style="margin-left: 78px;">
+          <div v-for="top of topSensors" :key="top.id" class="flex align-items-center">
+            <Checkbox
+              style="bottom: 4px;"
+              v-model="selectedTopSensors"
+              :input-id="top.id"
+              name="top"
+              :value="top.name"
+              @change="changeCheckbox"
+            ></Checkbox>
+            <label :for="top.name" style="margin-bottom: 5px;">{{ top.name }}</label>
+            <br />
+          </div>
+        </div>
+        <h3 class="color-h3">Остальные сигналы группы</h3>
+        <div>
+          <div v-for="other of otherGroupSensors" :key="other.id" class="flex align-items-center">
+            <Checkbox
+              v-model="selectedOtherGroupSensors"
+              :input-id="other.id"
+              name="other"
+              :value="other.name"
+              @change="changeCheckbox"
+            ></Checkbox>
+            <label :for="other.name">{{ other.name }}</label>
+            <br />
+          </div>
+        </div>
+        <div>
+          <div v-for="topSignal of selectedTopSensors"> 
+            <UPlotlyMultiAxises :selected-signal-checkbox="topSignal" ></UPlotlyMultiAxises>
+          </div>
+          <div v-for="otherSignal of selectedOtherGroupSensors">
+            <UPlotlyMultiAxises :selected-signal-checkbox="otherSignal"></UPlotlyMultiAxises>
+          </div>
+        </div>
+     
+     <!-- </div> -->
+    
   </main>
 </template>
 
