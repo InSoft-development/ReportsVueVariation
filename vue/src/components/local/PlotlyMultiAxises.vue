@@ -33,6 +33,6 @@ export default {
 
 <template>
   <div>
-    <div ref="plotlyMulti"></div>
+    <div ref="plotlyMulti" ></div>
   </div>
 </template>

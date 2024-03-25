@@ -100,39 +100,53 @@ export default {
 </script>
 
 <template>
-  <br />
-  <h4 class="color-h4">
-    {{ selectedSignal }}
-  </h4>
-  <div>
-    <div class="container position-relative">
-      <div
-        class="row position-absolute top-50 start-50 translate-middle z-1"
-        v-show="spinnerFlagMultiAxis"
-      >
-        <ProgressSpinner
-          style="width: 100px; height: 100px"
-          stroke-width="5"
-          animation-duration=".3s"
-          fill="var(--surface-ground)"
-          class="z-2"
-        />
-      </div>
-      <div class="row">
-        <PlotlyMultiAxises
-          :interval-data-target="PlotlyMultiData"
-          :interval-data-layout="PlotlyMultiLayout"
-        ></PlotlyMultiAxises>
-      </div>
-    </div>
-  </div>
-  <div>
+  <div class="container position-relative">
+        <h4 class="color-h4">
+          {{ selectedSignal }}
+        </h4>
+    
+
+    <!-- <div> -->
+      <!-- <div class="container position-relative"> -->
+        <div
+          class="row position-absolute top-50 start-50 translate-middle z-1"
+          v-show="spinnerFlagMultiAxis"
+        >
+          <ProgressSpinner
+            style="width: 100px; height: 100px"
+            stroke-width="5"
+            animation-duration=".3s"
+            fill="var(--surface-ground)"
+            class="z-2"
+          />
+        </div>
+        <!-- <div class="container"> -->
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-9"> -->
+          <PlotlyMultiAxises
+            :interval-data-target="PlotlyMultiData"
+            :interval-data-layout="PlotlyMultiLayout"
+          ></PlotlyMultiAxises>
+        <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    </div> 
+    
+    
+    <!-- </div> -->
+  <!-- </div> -->
+
+
+
+
+  <div class="container position-relative" style="top: 10px;">
     <div
       v-for="multiSensor of multiAxisSensors"
       :key="multiSensor.id"
       class="flex align-items-center"
     >
       <Checkbox
+        style="bottom: 4px;"
         v-model="selectedMultiAxisSensors"
         :input-id="multiSensor.id"
         name="multiSensor"
@@ -140,7 +154,7 @@ export default {
         @change="changeMultiSignalCheckbox"
       >
       </Checkbox>
-      <label :for="multiSensor.name">{{ multiSensor.name }}</label>
+      <label :for="multiSensor.name" style="margin-bottom: 5px;padding-left: 5px;">{{ multiSensor.name }}</label>
     </div>
   </div>
   <br />
@@ -149,5 +163,17 @@ export default {
 <style scoped>
 .color-h4 {
   color: #1f77b4;
+  margin-left: auto;
+  margin-top: 40px;
+  margin-bottom: 7px;
+}
+
+.card_1 {
+    background: var(--surface-card);
+    padding: 2rem;
+    /* border-radius: 10px; */
+    margin-bottom: 1rem;
+    text-decoration: none;
+    width: 1299px;
 }
 </style>

@@ -257,9 +257,11 @@ export default {
     </div>
       <!-- </div> -->
 
-       <!-- <div class="container position-relative"> -->
-        <h3 class="color-h3" style="margin-top: 20px;margin-left: 78px;margin-bottom: 8px;">Сигналы, внесшие наибольший вклад</h3>
-        <div style="margin-left: 78px;">
+       <div class="container position-relative">
+        <h3 class="color-h3" style="margin-top: 40px;margin-bottom: 5px;">Сигналы, внесшие наибольший вклад</h3>
+      </div>
+
+        <div class="container position-relative">
           <div v-for="top of topSensors" :key="top.id" class="flex align-items-center">
             <Checkbox
               style="bottom: 4px;"
@@ -269,34 +271,44 @@ export default {
               :value="top.name"
               @change="changeCheckbox"
             ></Checkbox>
-            <label :for="top.name" style="margin-bottom: 5px;">{{ top.name }}</label>
+            <label :for="top.name" style="margin-bottom: 5px;padding-left: 5px;">{{ top.name }}</label>
             <br />
           </div>
         </div>
-        <h3 class="color-h3">Остальные сигналы группы</h3>
-        <div>
+
+        <div class="container position-relative">
+            <h3 class="color-h3" style="margin-top: 40px;margin-bottom: 5px;">Остальные сигналы группы</h3>
+        </div>
+
+        <div class="container position-relative">
           <div v-for="other of otherGroupSensors" :key="other.id" class="flex align-items-center">
             <Checkbox
+              style="bottom: 4px;"
               v-model="selectedOtherGroupSensors"
               :input-id="other.id"
               name="other"
               :value="other.name"
               @change="changeCheckbox"
             ></Checkbox>
-            <label :for="other.name">{{ other.name }}</label>
+            <label :for="other.name" style="margin-bottom: 5px;padding-left: 5px;">{{ other.name }}</label>
             <br />
           </div>
         </div>
-        <div>
-          <div v-for="topSignal of selectedTopSensors"> 
-            <UPlotlyMultiAxises :selected-signal-checkbox="topSignal" ></UPlotlyMultiAxises>
-          </div>
-          <div v-for="otherSignal of selectedOtherGroupSensors">
-            <UPlotlyMultiAxises :selected-signal-checkbox="otherSignal"></UPlotlyMultiAxises>
-          </div>
-        </div>
+
+  
+          <!-- <div> -->
+            <div v-for="topSignal of selectedTopSensors">            
+              <UPlotlyMultiAxises :selected-signal-checkbox="topSignal"></UPlotlyMultiAxises>           
+            </div> 
+                   
+            <div v-for="otherSignal of selectedOtherGroupSensors">           
+              <UPlotlyMultiAxises :selected-signal-checkbox="otherSignal"></UPlotlyMultiAxises>           
+            </div>  
+          <!-- </div> -->
+          
+
      
-     <!-- </div> -->
+     
     
   </main>
 </template>
