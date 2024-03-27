@@ -100,14 +100,16 @@ export default {
 </script>
 
 <template>
+  <main>
   <div class="container position-relative">
         <h4 class="color-h4">
           {{ selectedSignal }}
         </h4>
-    
+  </div>    
 
-    <!-- <div> -->
+     <!-- <div> -->
       <!-- <div class="container position-relative"> -->
+        <div class="container position-relative" style="right: 188px;">
         <div
           class="row position-absolute top-50 start-50 translate-middle z-1"
           v-show="spinnerFlagMultiAxis"
@@ -120,17 +122,21 @@ export default {
             class="z-2"
           />
         </div>
-        <!-- <div class="container"> -->
-        <!-- <div class="row"> -->
-          <!-- <div class="col-md-9"> -->
-          <PlotlyMultiAxises
+  
+
+        
+        <!-- <div class="card_11"> -->
+          <!-- <div style="background: #efefef;"> -->
+            <!-- style="width:900px; height: 450px;"  -->
+          <PlotlyMultiAxises class="Graf" 
             :interval-data-target="PlotlyMultiData"
             :interval-data-layout="PlotlyMultiLayout"
-          ></PlotlyMultiAxises>
-        <!-- </div> -->
+          ></PlotlyMultiAxises>    
+       
+           </div>
         <!-- </div> -->
       <!-- </div> -->
-    </div> 
+    
     
     
     <!-- </div> -->
@@ -158,6 +164,7 @@ export default {
     </div>
   </div>
   <br />
+</main>
 </template>
 
 <style scoped>
@@ -168,12 +175,22 @@ export default {
   margin-bottom: 7px;
 }
 
-.card_1 {
-    background: var(--surface-card);
-    padding: 2rem;
+.card_11 {
+    /* background: var(--surface-card); */
+    /* padding: 2rem; */
     /* border-radius: 10px; */
-    margin-bottom: 1rem;
-    text-decoration: none;
+    /* margin-bottom: 1rem; */
+    /* text-decoration: none; */
     width: 1299px;
+    height: 450px;
+    background: #1f77b4;
 }
+.Graf{  
+  clip-path: inset(0px 0px 0px 190px);
+ 
+
+  /* background: #b4561f; */
+  /* right: 70px; */
+}
+
 </style>

@@ -297,7 +297,7 @@ export default {
 
   
           <!-- <div> -->
-            <div v-for="topSignal of selectedTopSensors">            
+            <div v-for="topSignal of selectedTopSensors"  >             
               <UPlotlyMultiAxises :selected-signal-checkbox="topSignal"></UPlotlyMultiAxises>           
             </div> 
                    
@@ -322,4 +322,5 @@ export default {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 </style>

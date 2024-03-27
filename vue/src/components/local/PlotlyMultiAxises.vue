@@ -32,7 +32,21 @@ export default {
 </script>
 
 <template>
-  <div>
-    <div ref="plotlyMulti" ></div>
-  </div>
+  <!-- <div > -->
+    <div ref="plotlyMulti"></div>
+  <!-- </div> -->
 </template>
+
+<style>
+/* .graf{
+  background: green;
+  right: 120px;
+} */
+/* .Graf{
+  
+  clip-path: inset(0px 0px 0px 120px);
+} */
+/* .js-plotly-plot .plotly .main-svg{
+  clip-path: inset(0px 0px 0px 120px);
+} */
+</style>
