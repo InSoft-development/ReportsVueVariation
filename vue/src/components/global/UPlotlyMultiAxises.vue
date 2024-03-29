@@ -108,39 +108,29 @@ export default {
   </div>    
 
      <!-- <div> -->
-      <!-- <div class="container position-relative"> -->
-        <div class="container position-relative" style="right: 188px;">
-        <div
-          class="row position-absolute top-50 start-50 translate-middle z-1"
-          v-show="spinnerFlagMultiAxis"
-        >
-          <ProgressSpinner
-            style="width: 100px; height: 100px"
-            stroke-width="5"
-            animation-duration=".3s"
-            fill="var(--surface-ground)"
-            class="z-2"
-          />
-        </div>
-  
+    <div class="container position-relative card_11">
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+      <div class="container position-relative card_12">
+            <div
+              class="row position-absolute top-50 start-50 translate-middle z-1"
+              v-show="spinnerFlagMultiAxis"
+            >
+              <ProgressSpinner
+                style="width: 100px; height: 100px"
+                stroke-width="5"
+                animation-duration=".3s"
+                fill="var(--surface-ground)"
+                class="z-2"
+              />
+            </div> 
 
-        
-        <!-- <div class="card_11"> -->
-          <!-- <div style="background: #efefef;"> -->
-            <!-- style="width:900px; height: 450px;"  -->
-          <PlotlyMultiAxises class="Graf" 
-            :interval-data-target="PlotlyMultiData"
-            :interval-data-layout="PlotlyMultiLayout"
-          ></PlotlyMultiAxises>    
-       
-           </div>
-        <!-- </div> -->
-      <!-- </div> -->
-    
-    
-    
-    <!-- </div> -->
-  <!-- </div> -->
+              <PlotlyMultiAxises
+                :interval-data-target="PlotlyMultiData"
+                :interval-data-layout="PlotlyMultiLayout"
+              ></PlotlyMultiAxises> 
+      </div>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
+    </div>
 
 
 
@@ -185,12 +175,16 @@ export default {
     height: 450px;
     background: #1f77b4;
 }
+.card_12{
+  width: 1299px;
+}
 .Graf{  
-  clip-path: inset(0px 0px 0px 190px);
+  /* clip-path: inset(0px 0px 0px 190px); */
+  width: 1299;
  
 
-  /* background: #b4561f; */
-  /* right: 70px; */
+  
 }
+
 
 </style>
