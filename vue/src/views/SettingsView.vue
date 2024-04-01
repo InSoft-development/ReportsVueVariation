@@ -92,28 +92,33 @@ export default {
           <h4 style="padding-left: 1px;">Выберите ориентацию страниц при построении PDF-отчетов</h4>
         </div>
         
-        <div class="row" style="margin-left: 50px; margin-bottom: 10px;" >
-          <div class="form-check">
-            <input
-              class="form-check-input"
+        <div class="row" style="margin-left: 50px; margin-bottom: 10px;padding-left: 0px;padding-right: 590px;" >
+          <div class="container_1">
+            <label for="book">
+              <input
               type="radio"
               id="book"
               name="book"
               value="book"
               v-model="pickedRadioOrientation"
               @change="onChangeRadioButtons"
-            />
-            <label class="form-check-label" for="book">
-              <span class="badge rounded-pill bg-primary">Книжная</span>
+              checked
+              />
+              <span>Книжная</span>
             </label>
+
+           
+
+
+           
           </div>
         </div>
 
 
-        <div class="row" style="margin-left: 50px;">
-          <div class="form-check">
-            <input
-              class="form-check-input"
+        <div class="row" style="margin-left: 50px; padding-right: 590px;">
+          <div class="container_1" style="margin-left: 9px;">
+             <label for="letter">
+              <input              
               type="radio"
               id="letter"
               name="letter"
@@ -121,9 +126,11 @@ export default {
               v-model="pickedRadioOrientation"
               @change="onChangeRadioButtons"
             />
-            <label class="form-check-label" for="letter">
-              <span class="badge rounded-pill bg-primary">Альбомная</span>
+
+              <span>Альбомная</span>
             </label>
+            
+           
           </div>
         </div>
       </div>
@@ -145,4 +152,48 @@ h1{
   font-size: 1.5rem;
 }
 
+
+/* ///////////////////////////////////////// */
+.container_1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+label{
+  display: flex;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+}
+label input{
+  opacity: 0;
+}
+label span{
+  display: flex;
+  align-items: center;
+  padding: 8px 15px 8px 8px;
+  border-radius: 50px;
+  transition: 0.25s ease;
+}
+label span:hover{
+  background: #d6d6e5;
+}
+label input:checked ~ span{
+  background: #d6d6e5;
+}
+label span::before{
+  content: "";
+  background-color: #fff;
+  width: 29px;
+  height: 29px;
+  border-radius: 50px;
+  margin-right: 7px;
+  transition: .25s ease;
+  box-shadow: inset 0 0 0 3px #1f77b4;
+}
+
+label input:checked ~ span::before{
+  box-shadow: inset 0 0 0 8px #1f77b4;
+}
 </style>
