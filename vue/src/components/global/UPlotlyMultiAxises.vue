@@ -113,8 +113,8 @@ export default {
       <div class="container position-relative card_12">
             <div
               class="row position-absolute top-50 start-50 translate-middle z-1"
-              v-show="spinnerFlagMultiAxis"
-            >
+              v-show="spinnerFlagMultiAxis"              
+            >          
               <ProgressSpinner
                 style="width: 100px; height: 100px"
                 stroke-width="5"
@@ -124,13 +124,21 @@ export default {
               />
             </div> 
 
-              <PlotlyMultiAxises
+              <PlotlyMultiAxises class="Graf"
                 :interval-data-target="PlotlyMultiData"
                 :interval-data-layout="PlotlyMultiLayout"
-              ></PlotlyMultiAxises> 
+              ></PlotlyMultiAxises>     
+              
       </div>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
-    </div>
+      <div class="container position-relative card_13" style="right: 103px; bottom: 450px;top: 0px;">      
+
+                    <PlotlyMultiAxises class="Graf_13"
+                      :interval-data-target="PlotlyMultiData"
+                      :interval-data-layout="PlotlyMultiLayout"
+                    ></PlotlyMultiAxises> 
+            </div>     
+      </div>
 
 
 
@@ -166,24 +174,24 @@ export default {
 }
 
 .card_11 {
-    /* background: var(--surface-card); */
-    /* padding: 2rem; */
-    /* border-radius: 10px; */
-    /* margin-bottom: 1rem; */
-    /* text-decoration: none; */
     width: 1299px;
     height: 450px;
-    background: #1f77b4;
+    background: #ffff;
 }
 .card_12{
   width: 1299px;
 }
 .Graf{  
-  /* clip-path: inset(0px 0px 0px 190px); */
-  width: 1299;
- 
-
-  
+  clip-path: inset(0px 490px 380px 490px);
+  width: 1299;  
+}
+.card_13{
+  width: 1299px;
+}
+.Graf_13{
+  clip-path: inset(70px 0px 0px 170px);
+  width: 1299; 
+  margin-top: -451px;
 }
 
 
