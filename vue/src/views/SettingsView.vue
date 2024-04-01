@@ -44,23 +44,24 @@ export default {
 
 <template>
   <main>
-    <div class="about">
-      <h1>Настройки</h1>
-      <div class="container">
+    <div class="container position-relative">
+      <h1 style="margin-top: 40px;margin-bottom: 5px; margin-left: 278px;">Настройки</h1>
+    </div>  
+      <div class="container position-relative form" style="width: 740px; height: 450px;">
         <div class="row">
-          <div class="col">
-            <label for="left-input-number" class="font-bold block mb-2">
+          <div class="col" style="margin-left: 50px;">
+            <label for="left-input-number" class="label_1" style="margin-bottom: 0px;margin-top: 16px;">
               Ширина отступа в 5-ти минутках слева
             </label>
           </div>
-          <div class="col">
-            <label for="right-input-number" class="font-bold block mb-2">
+          <div class="col" style="margin-left: 50px;">
+            <label for="right-input-number" class="label_2" style="margin-bottom: 0px;margin-top: 16px;">
               Ширина отступа в 5-ти минутках справа
             </label>
           </div>
         </div>
         <div class="row">
-          <div class="col">
+          <div class="col" style="margin-left: 50px;">
             <InputNumber
               v-model="leftInputNumber"
               inputId="left-input-number"
@@ -73,7 +74,7 @@ export default {
               :aria-label="leftInputNumber"
             />
           </div>
-          <div class="col">
+          <div class="col" style="margin-left: 50px;">
             <InputNumber
               v-model="rightInputNumber"
               inputId="right-input-number"
@@ -87,10 +88,11 @@ export default {
             />
           </div>
         </div>
-        <div class="row">
-          <h4>Выберите ориентацию страниц при построении PDF-отчетов</h4>
+        <div class="row" style="margin-top: 77px;margin-left: 50px;">
+          <h4 style="padding-left: 1px;">Выберите ориентацию страниц при построении PDF-отчетов</h4>
         </div>
-        <div class="row">
+        
+        <div class="row" style="margin-left: 50px; margin-bottom: 10px;" >
           <div class="form-check">
             <input
               class="form-check-input"
@@ -106,7 +108,9 @@ export default {
             </label>
           </div>
         </div>
-        <div class="row">
+
+
+        <div class="row" style="margin-left: 50px;">
           <div class="form-check">
             <input
               class="form-check-input"
@@ -123,6 +127,22 @@ export default {
           </div>
         </div>
       </div>
-    </div>
+    
   </main>
 </template>
+
+<style scoped>
+h1{
+  color: #1f77b4;
+}
+.form{
+  background: #fff; 
+}
+.label_1{
+  font-size: 1.5rem;
+}
+.label_2{
+  font-size: 1.5rem;
+}
+
+</style>
