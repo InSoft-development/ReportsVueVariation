@@ -422,15 +422,18 @@ export default {
       </div>
       </section>
 
-
-        <div class="form_select_1">
+      <!-- class="form-select fs"
+            aria-label="Default select example" -->
+        <div>
+          <div class="select"></div>
           <select
-            class="form_select"
-            aria-label="Default select example"
+            class="form-select fs"
+            aria-label="Default select example" 
             id="select-group"
             v-model="pickedGroup"
             @change="onChangeSelector"
           >
+          <!-- <div class="select"></div> -->
             <option v-for="option in optionsSelectorOfGroups" :value="option.value">
               {{ option.text }}
             </option>
@@ -803,7 +806,38 @@ export default {
   transform: scale(1);
 }
 /* ////////////////////    form-select /////////////////////////// */
-.form_select_1{
+.select{
+  position: relative;
+  margin-bottom: 1rem;
+  right: 122px;
+  margin-right: 38px;
+  top: 32px;
+}
+.select:after{
+  content: "";
+  display: block;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+  border-color: #fff transparent transparent transparent;
+
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  z-index: 1;
+}
+/* .select select{
+  background: none;
+  border: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #dbd6d6;
+
+  padding: .75rem 1rem;
+  border-radius: 5px;
+} */
+/* .form_select_1{
   
   background: #1e293b;
   border-radius: 5px;
@@ -814,17 +848,21 @@ export default {
   cursor: pointer;
   padding-left: 1.2em;
   margin-bottom: 5px;
-}
-.form_select{  
+} */
+.fs{  
   color: #fff;
-  background: #1e293b;
+  background-color: #1e293b;
   border-radius: 5px;  
-  min-width: 150px;
-  display: block;
+  
   padding: 10px 10px 10px 50px;
   cursor: pointer;
   padding-left: 1.2em;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  width: 220px;
+
+  margin-left: 20px;
+
 }
 /* ///////////////// BUTTON ///////////////// */
 .row_1{
