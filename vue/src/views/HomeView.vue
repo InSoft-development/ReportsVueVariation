@@ -205,7 +205,7 @@ export default {
           class="z-2"
         />
       </div>
-      <div class="row">
+      <div class="col-12">
         <UPlotlyInterval
           :interval-data-target="PlotlyCommonDataTarget"
           :interval-data-layout="PlotlyCommonLayoutTarget"
@@ -216,16 +216,16 @@ export default {
    <!-- </div> -->
 
 
-    
-    <div class="container position-relative">
-      <h2 class="color-h4">Добавить период</h2>
-    
-      
-      <div class="services">
-        <div class="services__item" style="left: 330px;">
-          <div class="services__title">Начало периода</div>
+      <div class="container position-relative">
+          <h2 class="color-h4">Добавить период</h2>
+      </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="font-bold block mb-2">Начало периода</div>
           <Calendar
-            class="services__text"
             id="calendar-begin"
             v-model="dateTimeBegin"
             show-time
@@ -241,10 +241,9 @@ export default {
             @clear-click="onDateTimeBeginClearButtonClick"
           />
         </div>
-        <div class="cservices__item" style="padding-left: 265px;">
-          <div class="services__title">Конец периода</div>
+        <div class="col">
+          <div class="font-bold block mb-2">Конец периода</div>
           <Calendar
-            class="services__text"
             id="calendar-end"
             v-model="dateTimeEnd"
             show-time
@@ -258,24 +257,20 @@ export default {
             show-icon
             show-button-bar
             @clear-click="onDateTimeEndClearButtonClick"
-          />          
+          />
         </div>
-        <div class="services__item" style="left: 84px;">
-          <br />          
-            <Button  @click="onButtonCreateClick">
-                <div class="tt">Создать</div>            
-            </Button> 
-                 
+        <div class="col">
+          <br />
+          <Button @click="onButtonCreateClick">Создать</Button>
         </div>
       </div>
-
       <div class="row">
-        <div class="col" style="margin-left: 330px;">
+        <div class="col">
           <div class="alert alert-danger" role="alert" v-if="!dateTimeBegin">
             Введите начало периода
           </div>
         </div>
-        <div class="col" style="left: 55px;">
+        <div class="col">
           <div class="alert alert-danger" role="alert" v-if="!dateTimeEnd">
             Введите конец периода
           </div>
@@ -283,26 +278,15 @@ export default {
         <div class="col"></div>
       </div>
     </div>
-    
-
-    <div class="container position-relative">
-      <br/>
-    </div>
-
-    
-    
-    <div class="container position-relative">
+    <br />
+    <div class="container">
       <div class="row" v-if="Object.keys(addedToTableIntervals).length !== 0">
         <div class="col">Добавленный период</div>
         <div class="col">Начало периода</div>
         <div class="col">Конец периода</div>
-        
-      
         <div class="col"></div>
         <hr />
       </div>
-
-      
       <div v-for="val in addedToTableIntervals">
         <UAddedRow
           :id="val.id"
@@ -319,10 +303,7 @@ export default {
         />
       </div>
     </div>
-
-    <div class="container position-relative">
-        <br/>
-    </div>
+    <br />
 
     
   

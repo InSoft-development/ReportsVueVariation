@@ -671,21 +671,7 @@ export default {
         <div v-if="!checkedSettingsAndTabsFlag">
           <h1 class="text-center">Метод {{ pickedMethod }}: группа {{ pickedGroup }}</h1>
           <Header/>
-          <!-- <TabNav :tabs="['Home', 'Settings', 'Profile']" :selected="selected" @selected="setSelected">
-            <Tab :isSelected="selected === 'Home'"><p>Some test text</p> </Tab>
-            <Tab :isSelected="selected === 'Settings'"> <h1>More test text</h1> </Tab>
-            <Tab :isSelected="selected === 'Profile'">
-
-              <ul>
-                <li>List test1</li>
-                <li>List test2</li>
-                <li>List test3</li>
-              </ul>
-            
-            </Tab>    
-
-
-          </TabNav> -->
+  
 
       
         
