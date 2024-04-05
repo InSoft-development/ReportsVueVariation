@@ -1,5 +1,7 @@
 <template>
      <div class="container position-relative">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-12">
       <div class="card_1">
         <TabView  :scrollable="true">
             <TabPanel class="pan" v-for="tab in scrollableTabs" :key="tab.title" :header="tab.title">
@@ -8,6 +10,8 @@
         </TabView>
       </div>
     </div>
+  </div>
+</div>
     
 
 </template>

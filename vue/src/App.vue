@@ -43,6 +43,7 @@ config({
 })
 
 import { useApplicationStore } from './stores/applicationStore'
+import HomeView from './views/HomeView.vue';
 
 // заглушка выбора метода
 
@@ -671,6 +672,7 @@ export default {
         <div v-if="!checkedSettingsAndTabsFlag">
           <h1 class="text-center">Метод {{ pickedMethod }}: группа {{ pickedGroup }}</h1>
           <Header/>
+         
   
 
       

@@ -190,13 +190,16 @@ export default {
   <main>
     
    
-    <div class="container position-relative"  >
-      <div class="row mb-5">
-        <div class="col-12 mb-5">
+    <div class="container position-relative">
+     <h2 class="color-h2">{{ targetLabel }}</h2>
+    </div>
 
-          <h2 class="color-h2">{{ targetLabel }}</h2>
-        <!-- <div class="card_2"> -->
           
+       <div class="container position-relative fix"> 
+          <div class="row">
+             <div class="col">
+              
+       
           <div
           
             class="row position-absolute top-50 start-50 translate-middle z-1"
@@ -210,16 +213,18 @@ export default {
               class="z-2"
             />
           </div>
+         
+
           
             <UPlotlyInterval
               :interval-data-target="PlotlyCommonDataTarget"
               :interval-data-layout="PlotlyCommonLayoutTarget"
             >
             </UPlotlyInterval>
-          
-    </div>
-  </div>
-</div>
+          </div>
+        </div>
+      </div>
+
    <!-- </div> -->
 
 
@@ -318,6 +323,29 @@ export default {
 </template>
 
 <style scoped>
+
+.fix{
+  display: grid;
+  
+  position: relative;
+  margin-left: auto;
+  
+  overflow: hidden;
+  
+  
+}
+/* .layer-above{
+  overflow: auto;
+} */
+/* .fix_1{
+  position: relative;
+  margin-left: auto;
+} */
+/* .container{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 450px;
+} */
 .color-h2 {
   color: #1f77b4;
   margin-left: auto;
