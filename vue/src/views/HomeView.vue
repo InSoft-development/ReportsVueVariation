@@ -191,28 +191,35 @@ export default {
     
    
     <div class="container position-relative"  >
-       <h2 class="color-h2">{{ targetLabel }}</h2>
-    <!-- <div class="card_2"> -->
-      <div
-        class="row position-absolute top-50 start-50 translate-middle z-1"
-        v-show="spinnerFlagHome"
-      >
-        <ProgressSpinner
-          style="width: 100px; height: 100px"
-          stroke-width="5"
-          animation-duration=".3s"
-          fill="var(--surface-ground)"
-          class="z-2"
-        />
-      </div>
-      <div class="col-12">
-        <UPlotlyInterval
-          :interval-data-target="PlotlyCommonDataTarget"
-          :interval-data-layout="PlotlyCommonLayoutTarget"
-        >
-        </UPlotlyInterval>
-      </div>
+      <div class="row mb-5">
+        <div class="col-12 mb-5">
+
+          <h2 class="color-h2">{{ targetLabel }}</h2>
+        <!-- <div class="card_2"> -->
+          
+          <div
+          
+            class="row position-absolute top-50 start-50 translate-middle z-1"
+            v-show="spinnerFlagHome"
+          >
+            <ProgressSpinner
+              style="width: 100px; height: 100px"
+              stroke-width="5"
+              animation-duration=".3s"
+              fill="var(--surface-ground)"
+              class="z-2"
+            />
+          </div>
+          
+            <UPlotlyInterval
+              :interval-data-target="PlotlyCommonDataTarget"
+              :interval-data-layout="PlotlyCommonLayoutTarget"
+            >
+            </UPlotlyInterval>
+          
     </div>
+  </div>
+</div>
    <!-- </div> -->
 
 
