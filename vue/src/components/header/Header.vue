@@ -1,7 +1,7 @@
 <template>
-     <div class="container position-relative">
+     <div class="container position-relative fix_m">
       <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-12">
+        <div class="col">
       <div class="card_1">
         <TabView  :scrollable="true">
             <TabPanel class="pan" v-for="tab in scrollableTabs" :key="tab.title" :header="tab.title">
@@ -58,10 +58,16 @@ html {
     border-radius: 10px;
     margin-bottom: 1rem;
     text-decoration: none;
+    /* width: 946px; */
     /* max-width: 1299px;
     min-width: 500px; */
     /* margin-left: 257px;
     position: relative; */
+}
+.fix_m{
+  width: 946px;
+  /* max-width: 1299px; */
+  /* min-width: 1299px; */
 }
 
 p {

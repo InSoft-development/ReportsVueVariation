@@ -190,8 +190,12 @@ export default {
   <main>
     
    
-    <div class="container position-relative">
-     <h2 class="color-h2">{{ targetLabel }}</h2>
+    <div class="container position-relative" style="width: 946px;">
+      <div class="row">
+        <div class="col">
+              <h2 class="color-h2">{{ targetLabel }}</h2>
+        </div>
+      </div>
     </div>
 
           
@@ -228,12 +232,12 @@ export default {
    <!-- </div> -->
 
 
-      <div class="container position-relative">
+      <div class="container position-relative fix_d">
           <h2 class="color-h4">Добавить период</h2>
       </div>
 
 
-    <div class="container">
+    <div class="container  position-relative fix_n">
       <div class="row">
         <div class="col">
           <div class="font-bold block mb-2">Начало периода</div>
@@ -291,7 +295,9 @@ export default {
       </div>
     </div>
     <br />
-    <div class="container">
+
+
+    <div class="container position-relative fix_nn">
       <div class="row" v-if="Object.keys(addedToTableIntervals).length !== 0">
         <div class="col">Добавленный период</div>
         <div class="col">Начало периода</div>
@@ -325,6 +331,19 @@ export default {
 <style scoped>
 
 .fix{
+  width: 946px;
+}
+.fix_d{
+  width: 946px;
+}
+.fix_n{
+  width: 946px;
+}
+.fix_nn{
+  width: 946px;
+}
+
+/* .fix{
   display: grid;
   
   position: relative;
@@ -333,19 +352,8 @@ export default {
   overflow: hidden;
   
   
-}
-/* .layer-above{
-  overflow: auto;
 } */
-/* .fix_1{
-  position: relative;
-  margin-left: auto;
-} */
-/* .container{
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 450px;
-} */
+
 .color-h2 {
   color: #1f77b4;
   margin-left: auto;

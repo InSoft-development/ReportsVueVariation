@@ -13,7 +13,9 @@ export default {
     const plotlyInterval = ref(null)
     const plotlyConfig = {
       scrollZoom: true,
-      displayModeBar: false
+      displayModeBar: false,
+      // autosizable: true,
+      // responsive: true
     }
 
     onMounted(() => {
