@@ -237,9 +237,9 @@ export default {
       </div>
 
 
-    <div class="container  position-relative fix_n">
+    <div class="container  position-relative fix_n" style="left: 235px;">
       <div class="row">
-        <div class="col">
+        <div class="col-3">
           <div class="font-bold block mb-2">Начало периода</div>
           <Calendar
             id="calendar-begin"
@@ -257,7 +257,7 @@ export default {
             @clear-click="onDateTimeBeginClearButtonClick"
           />
         </div>
-        <div class="col">
+        <div class="col-3">
           <div class="font-bold block mb-2">Конец периода</div>
           <Calendar
             id="calendar-end"
@@ -275,9 +275,9 @@ export default {
             @clear-click="onDateTimeEndClearButtonClick"
           />
         </div>
-        <div class="col">
+        <div class="col-3">
           <br />
-          <Button @click="onButtonCreateClick">Создать</Button>
+          <Button @click="onButtonCreateClick" style="margin-top: 7px;">Создать</Button>
         </div>
       </div>
       <div class="row">
