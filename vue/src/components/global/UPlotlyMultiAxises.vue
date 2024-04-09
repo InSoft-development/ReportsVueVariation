@@ -101,14 +101,14 @@ export default {
 
 <template>
   <main>
-  <div class="container position-relative">
+  <div class="container position-relative" style="width: 946px;">
         <h4 class="color-h4">
           {{ selectedSignal }}
         </h4>
   </div>    
 
      <!-- <div> -->
-    <div class="container position-relative card_11">
+    <div class="container position-relative card_11" style="left: 12px;">
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
       <div class="container position-relative card_12">
             <div
@@ -131,7 +131,7 @@ export default {
               
       </div>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
-      <div class="container position-relative card_13" style="right: 103px; bottom: 450px;top: 0px;">      
+      <div class="container position-relative card_13" style="right: 50px; bottom: 450px;top: 0px;">      
 
                     <PlotlyMultiAxises class="Graf_13"
                       :interval-data-target="PlotlyMultiData"
@@ -174,23 +174,24 @@ export default {
 }
 
 .card_11 {
-    width: 1299px;
+    width: 946px;
     height: 450px;
     background: #ffff;
 }
 .card_12{
-  width: 1299px;
+  width: 946px;
+  right: 12px;
 }
 .Graf{  
-  clip-path: inset(0px 490px 380px 490px);
-  width: 1299;  
+  clip-path: inset(0px 20px 380px 0px);
+  width: 946px;  
 }
 .card_13{
-  width: 1299px;
+  width: 946px;
 }
 .Graf_13{
-  clip-path: inset(70px 0px 0px 170px);
-  width: 1299; 
+  clip-path: inset(70px 0px 0px 80px);
+  width: 946; 
   margin-top: -451px;
 }
 

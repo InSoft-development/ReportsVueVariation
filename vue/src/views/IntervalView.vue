@@ -210,7 +210,7 @@ export default {
 <template>
   <main>
     
-    <div class="container position-relative">
+    <div class="container position-relative" style="width: 946px;">
       <div class="row">
         <div class="col-md-6">
           <div>
@@ -219,7 +219,7 @@ export default {
         </div>
         <div class="col-md-3">
           <div>
-            <Button @click="onButtonPdfReportClick" style="right: 225px;top: 12px;">PDF отчет</Button>
+            <Button @click="onButtonPdfReportClick" style="left: -20px;top: 12px;">PDF отчет</Button>
           </div>
         </div>
         <div class="col-md-3" v-if="progressTabBarActive">
@@ -257,11 +257,11 @@ export default {
     </div>
       <!-- </div> -->
 
-       <div class="container position-relative">
+       <div class="container position-relative" style="width: 946px;">
         <h3 class="color-h3" style="margin-top: 40px;margin-bottom: 5px;">Сигналы, внесшие наибольший вклад</h3>
       </div>
 
-        <div class="container position-relative">
+        <div class="container position-relative" style="width: 946px;">
           <div v-for="top of topSensors" :key="top.id" class="flex align-items-center">
             <Checkbox
               style="bottom: 4px;"
@@ -276,11 +276,11 @@ export default {
           </div>
         </div>
 
-        <div class="container position-relative">
+        <div class="container position-relative" style="width: 946px;">
             <h3 class="color-h3" style="margin-top: 40px;margin-bottom: 5px;">Остальные сигналы группы</h3>
         </div>
 
-        <div class="container position-relative">
+        <div class="container position-relative" style="width: 946px;">
           <div v-for="other of otherGroupSensors" :key="other.id" class="flex align-items-center">
             <Checkbox
               style="bottom: 4px;"
