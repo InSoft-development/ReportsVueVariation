@@ -143,7 +143,7 @@ export default {
 
 
 
-  <div class="container position-relative" style="top: 10px;">
+  <div class="container position-relative" style="top: 10px; width: 946px;">
     <div
       v-for="multiSensor of multiAxisSensors"
       :key="multiSensor.id"
