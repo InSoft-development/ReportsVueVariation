@@ -44,11 +44,11 @@ export default {
 
 <template>
   <main>
-    <div class="container position-relative">
+    <div class="container position-relative" style="width: 946px;">
        <h2 class="color-h2" style="margin-top: 40px;margin-bottom: 5px;">Гистограмма распределения ошибки восстановления значений датчиков</h2>
     </div>
    
-    <div class="container position-relative">
+    <div class="container position-relative" style="width: 946px;">
       <div class="row">
         <div class="col">
           <PlotlyMultiAxises
