@@ -374,6 +374,11 @@ export default {
 
 <template>
   <!-- <Sidebar/> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+
+ 
   
   
     <sidebar-menu 
@@ -665,6 +670,9 @@ export default {
       </template>
     
      </sidebar-menu>
+    </div>
+    </div>
+  </div>
 
   
   <div :style="{'margin-left': sidebarWidth}">

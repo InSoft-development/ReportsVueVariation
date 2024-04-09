@@ -282,12 +282,12 @@ export default {
       </div>
       <div class="row">
         <div class="col">
-          <div class="alert alert-danger" role="alert" v-if="!dateTimeBegin">
+          <div class="alert alert-danger" role="alert" v-if="!dateTimeBegin" style="width: 216px;">
             Введите начало периода
           </div>
         </div>
         <div class="col">
-          <div class="alert alert-danger" role="alert" v-if="!dateTimeEnd">
+          <div class="alert alert-danger" role="alert" v-if="!dateTimeEnd" style="width: 214px; right: 76px;">
             Введите конец периода
           </div>
         </div>
