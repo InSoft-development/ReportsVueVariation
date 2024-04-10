@@ -237,9 +237,9 @@ export default {
       </div>
 
 
-    <div class="container  position-relative fix_n" style="left: 235px;">
+    <div class="container  position-relative fix_n" style="left: 0px;">
       <div class="row">
-        <div class="col-3">
+        <div class="col-6" style="padding-left: 243px;">
           <div class="font-bold block mb-2">Начало периода</div>
           <Calendar
             id="calendar-begin"
@@ -282,12 +282,12 @@ export default {
       </div>
       <div class="row">
         <div class="col">
-          <div class="alert alert-danger" role="alert" v-if="!dateTimeBegin" style="width: 216px;">
+          <div class="alert alert-danger" role="alert" v-if="!dateTimeBegin" style="width: 218px; left: 234px;">
             Введите начало периода
           </div>
         </div>
         <div class="col">
-          <div class="alert alert-danger" role="alert" v-if="!dateTimeEnd" style="width: 214px; right: 76px;">
+          <div class="alert alert-danger" role="alert" v-if="!dateTimeEnd" style="width: 214px; right: 0px; left: 159px;">
             Введите конец периода
           </div>
         </div>
@@ -337,22 +337,13 @@ export default {
   width: 946px;
 }
 .fix_n{
+  /* clip-path: inset(0px 243px 0px 0px); */
   width: 946px;
+  /* background: #97c6e775; */
 }
 .fix_nn{
   width: 946px;
 }
-
-/* .fix{
-  display: grid;
-  
-  position: relative;
-  margin-left: auto;
-  
-  overflow: hidden;
-  
-  
-} */
 
 .color-h2 {
   color: #1f77b4;
@@ -387,64 +378,4 @@ export default {
   background-color: #244964;;
   color: #fff;
 }
-/* .p-button {
-    color: #ffffff;
-    background: red;
-    border: 1px solid #007bff;
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
-    transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
-    border-radius: 4px;
-    outline-color: transparent;
-  } */
-/* .tt{
-  text-align: center;
-} */
-
-
-/* body {
-    font-family: var(--font-family);
-    font-weight: normal;
-    background: var(--surface-ground);
-    color: var(--text-color);
-    padding: 1rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-} */
-/* .plot-container plotly{
-  position: relative;
-  width: 1299px;
-  height: 450px;
-} */
-/* .card{
- position: relative;
- width: 1000px;
- height: 520px;
- padding: 80px 50px 20px;
- box-shadow: 15px 15px 20px rgba(0,0,0,0.1),
- -15px -15px 20px #fffb;
- border-radius: 20px;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- 
-} */
- 
- 
-
- /* .container_G{  
-  position: relative;
-  top: -40px;
-  height: 350px;
-  padding: 0;
-  box-shadow: 15px 15px 20px rgba(0,0,0,0.1),
- -15px -15px 20px #fffb;
- border-radius: 20px;
- justify-content: center;
- align-items: center;
- 
- }  */
-
-
-
 </style>
