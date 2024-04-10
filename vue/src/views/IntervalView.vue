@@ -234,7 +234,7 @@ export default {
     
 
 
-     <!-- <div class="container position-relative"> -->
+     
         <div
           class="row position-absolute top-50 start-50 translate-middle z-1"
           v-show="spinnerFlagInterval"
@@ -255,7 +255,7 @@ export default {
           </UPlotlyInterval>
         </div>
     </div>
-      <!-- </div> -->
+    
 
        <div class="container position-relative" style="width: 946px;">
         <h3 class="color-h3" style="margin-top: 40px;margin-bottom: 5px;">Сигналы, внесшие наибольший вклад</h3>
@@ -296,7 +296,7 @@ export default {
         </div>
 
   
-          <!-- <div> -->
+          
             <div v-for="topSignal of selectedTopSensors"  >             
               <UPlotlyMultiAxises :selected-signal-checkbox="topSignal"></UPlotlyMultiAxises>           
             </div> 
@@ -304,7 +304,7 @@ export default {
             <div v-for="otherSignal of selectedOtherGroupSensors">           
               <UPlotlyMultiAxises :selected-signal-checkbox="otherSignal"></UPlotlyMultiAxises>           
             </div>  
-          <!-- </div> -->
+         
           
 
      

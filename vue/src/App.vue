@@ -367,13 +367,10 @@ export default {
 
 }
 </script>
-<!-- onSidebarToggleCollapse -->
-<!-- @update:collapsed="onSidebarToggleCollapse"    -->
-<!-- @item-click="onSidebarMenuItemClick"  -->
-<!-- v-if="!checkedSettingsFlag && !checkedToggleCollapse" -->
+
 
 <template>
-  <!-- <Sidebar/> -->
+ 
   <div class="container">
     <div class="row">
       <div class="col-3">

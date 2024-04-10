@@ -31,22 +31,19 @@ export default {
 
 </script>
 
-<!-- export default{
-    name: 'Header',
-    
-} -->
+
 
 <style>
 html {
     font-size: 14px;
     
 }
-/* background: var(--surface-ground); */
+
 
  body {
     font-family: var(--font-family);
     font-weight: normal;
-    background: var(--surface-ground);
+    background: #ffff;
     color: var(--text-color);
     padding: 1rem;
     -webkit-font-smoothing: antialiased;
@@ -58,16 +55,11 @@ html {
     border-radius: 10px;
     margin-bottom: 1rem;
     text-decoration: none;
-    /* width: 946px; */
-    /* max-width: 1299px;
-    min-width: 500px; */
-    /* margin-left: 257px;
-    position: relative; */
+ 
 }
 .fix_m{
   width: 946px;
-  /* max-width: 1299px; */
-  /* min-width: 1299px; */
+
 }
 
 p {
@@ -243,12 +235,5 @@ p {
 
   .p-ink-active {
     animation: ripple 0.4s linear;
-  }
-
-
-
-
-
-
-  
+  }  
 </style>

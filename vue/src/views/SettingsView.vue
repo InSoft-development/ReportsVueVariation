@@ -44,10 +44,15 @@ export default {
 
 <template>
   <main>
-    <div class="container position-relative">
-      <h1 style="margin-top: 40px;margin-bottom: 5px; margin-left: 278px;">Настройки</h1>
-    </div>  
-      <div class="container position-relative form" style="width: 740px; height: 450px;">
+    <div class="container position-relative" style="width: 740px; right: 10px;">
+      <div class="row">
+        <div class="col">
+          <h1 style="margin-top: 40px;margin-bottom: 5px;">Настройки</h1>
+        </div>
+      </div>
+    </div>
+
+      <div class="container position-relative form" style="width: 740px; height: 400px;">
         <div class="row">
           <div class="col" style="margin-left: 50px;">
             <label for="left-input-number" class="label_1" style="margin-bottom: 0px;margin-top: 16px;">

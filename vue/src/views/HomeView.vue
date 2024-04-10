@@ -336,10 +336,8 @@ export default {
 .fix_d{
   width: 946px;
 }
-.fix_n{
-  /* clip-path: inset(0px 243px 0px 0px); */
-  width: 946px;
-  /* background: #97c6e775; */
+.fix_n{  
+  width: 946px;  
 }
 .fix_nn{
   width: 946px;
