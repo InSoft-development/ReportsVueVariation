@@ -179,8 +179,8 @@ export default {
     background: #ffff;
 }
 .card_12{
-  width: 946px;
-  right: 12px;
+  width: 920px;
+  right: 24px;
 }
 .Graf{  
   clip-path: inset(0px 20px 380px 0px);
@@ -191,7 +191,7 @@ export default {
 }
 .Graf_13{
   clip-path: inset(70px 0px 0px 80px);
-  width: 946; 
+  width: 946px; 
   margin-top: -451px;
 }
 
