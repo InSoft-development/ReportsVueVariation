@@ -371,9 +371,9 @@ export default {
 
 <template>
  
-  <div class="container">
+  <!-- <div class="container">
     <div class="row">
-      <div class="col-3">
+      <div class="col-3"> -->
 
  
   
@@ -448,8 +448,8 @@ export default {
           <div class="row_1_1" v-if="!checkedButtonPdf">
             <Button class="btn_1" @click="onButtonPdfClick">PDF</Button>
           </div>
-          <div v-if="progressBarActive">
-            <ProgressBar class="col-10 align-self-center" :value="progressBarValue"></ProgressBar>
+          <div class="col-10 align-self-center" v-if="progressBarActive" style="padding-left: 0px;">
+            <ProgressBar  :value="progressBarValue"></ProgressBar>
           </div>
         </div>
         <!-- :style="{ width: '50rem' }" -->
@@ -458,7 +458,7 @@ export default {
         <div class="row_1" v-if="!checkedButtonPdf">
           <Button class="btn_1" @click="onButtonDialogClick">Выделение интервалов</Button>
           <Dialog
-            class="Dialog_1"
+           
             v-model="dialogActive"
             :visible="dialogActive"
             :closable="false"
@@ -466,7 +466,7 @@ export default {
             position="left"
             :modal="true"
             :draggable="false"
-            :style="{ width: '50rem'}"
+            :style="{ width: '50rem' }"
             
           >
 
@@ -656,7 +656,9 @@ export default {
                 v-model="templateReportName"
                 labe
               ></InputText>
-              .html
+
+              <div style="margin-top: 7px;">.html</div>
+              
               <Button label="Скрыть" icon="pi pi-minus" @click="dialogEditorActive = false" text />
               <Button label="Создать отчет" icon="pi pi-check" @click="onEditorReportCreateClick" />
               
@@ -667,9 +669,9 @@ export default {
       </template>
     
      </sidebar-menu>
+    <!-- </div>
     </div>
-    </div>
-  </div>
+  </div> -->
 
   
   <div :style="{'margin-left': sidebarWidth}">
@@ -802,7 +804,7 @@ export default {
 .select{
   position: relative;
   margin-bottom: 1rem;
-  right: 122px;
+  right: 107px;
   margin-right: 38px;
   top: 32px;
 }
@@ -818,30 +820,7 @@ export default {
   right: 1rem;
   z-index: 1;
 }
-/* .select select{
-  background: none;
-  border: 0;
-  -webkit-appearance: none;
-  appearance: none;
-  font-family: inherit;
-  font-size: 1rem;
-  color: #dbd6d6;
 
-  padding: .75rem 1rem;
-  border-radius: 5px;
-} */
-/* .form_select_1{
-  
-  background: #1e293b;
-  border-radius: 5px;
-  color: #fff;
-  min-width: 150px;
-  display: block;
-  padding: 10px 20px 10px 50px;
-  cursor: pointer;
-  padding-left: 1.2em;
-  margin-bottom: 5px;
-} */
 .fs{  
   color: #fff;
   background-color: #1e293b;
@@ -852,7 +831,7 @@ export default {
   padding-left: 1.2em;
   margin-bottom: 10px;
   border: 1px solid;
-  width: 220px;
+  width: 235px;
 
   margin-left: 20px;
 
@@ -904,13 +883,13 @@ export default {
 }
 /* ///////////////// ProgressBar ////////////////// */
 
-.progress{
+/* .progress{
   background-color: #363636;
   width: 270px;
   height: 20px;
   border-radius: 100px;
   overflow: hidden;
-}
+} */
 /* .progress__item{
   border-radius: 100px;
   height: 100%;
@@ -928,9 +907,7 @@ export default {
 
 
 /* ///////////////////////////////////// */
-.Dialog_1{
-  background-color: #1e293b;
-}
+
 /* ///////////////////////////////////// */
 /* .common-margin-left {
   margin-left: 5%;

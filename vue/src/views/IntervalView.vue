@@ -222,9 +222,9 @@ export default {
             <Button @click="onButtonPdfReportClick" style="left: -20px;top: 12px;">PDF отчет</Button>
           </div>
         </div>
-        <div class="col-md-3" v-if="progressTabBarActive">
+        <div class="col-md-3" v-if="progressTabBarActive" style="margin-top: 20px;"> 
           <div>
-            <ProgressBar  :value="progressTabBarValue"></ProgressBar>
+            <ProgressBar  :value="progressTabBarValue" style="right: 100px;"></ProgressBar>
           </div>
         </div>
       </div>
