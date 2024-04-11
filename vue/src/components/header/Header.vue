@@ -224,7 +224,7 @@ p {
     color: #475569;
   }
 
-  .p-ink {
+  /* .p-ink {
     display: block;
     position: absolute;
     background: rgba(255, 255, 255, 0.5);
@@ -235,5 +235,5 @@ p {
 
   .p-ink-active {
     animation: ripple 0.4s linear;
-  }  
+  }   */
 </style>

@@ -612,16 +612,26 @@ export default {
               </div>
             </div>
             <template #footer>
+              <!-- <div class="row"> -->
+              <div class="" style="padding-top: 5px;">
               <Button label="Отмена" icon="pi pi-times" @click="dialogActive = false" text />
+            </div>
+            <div class="col-6">
               <Button
                 label="Запустить выделение интервалов"
                 icon="pi pi-check"
                 @click="onButtonNewIntervalClick"
               />
+            </div>
+              <div class="col" style="margin-top: 9px; margin-right: 20px; padding-right: 20px;">
+                
               <ProgressBar
                 :value="progressBarRebuildIntervalValue"
                 v-if="progressBarRebuildIntervalActive"
               ></ProgressBar>
+            
+            </div>
+          <!-- </div> -->
             </template>
           </Dialog>
         </div>
@@ -684,8 +694,8 @@ export default {
 
       
         
-
-          <!-- <TabMenu v-model:active-index="activeTabMenu" :model="tabMenu" class="p-tabmenu-nav">
+<!-- 
+           <TabMenu v-model:active-index="activeTabMenu" :model="tabMenu" class="p-tabmenu-nav">
             <template #item="{ label, item, props }">
               <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
                 <a
@@ -698,7 +708,7 @@ export default {
                 </a>
               </router-link>
             </template>
-          </TabMenu> -->
+          </TabMenu>  -->
 
           
         </div>
@@ -804,7 +814,7 @@ export default {
 .select{
   position: relative;
   margin-bottom: 1rem;
-  right: 107px;
+  right: 42px;
   margin-right: 38px;
   top: 32px;
 }
@@ -831,7 +841,7 @@ export default {
   padding-left: 1.2em;
   margin-bottom: 10px;
   border: 1px solid;
-  width: 235px;
+  width: 300px;
 
   margin-left: 20px;
 
